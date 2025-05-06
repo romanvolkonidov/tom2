@@ -1,133 +1,192 @@
-// Ubora Services Limited Website JavaScript
+// Ubora Services Limited - Main JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize form submission handlers
+    // Initialize AOS animation library
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true,
+        mirror: false
+    });
+
+    // Navbar active state on scroll
+    const sections = document.querySelectorAll('section[id]');
+    
+    function navHighlighter() {
+        const scrollY = window.pageYOffset;
+        
+        sections.forEach(current => {
+            const sectionHeight = current.offsetHeight;
+            const sectionTop = current.offsetTop - 100;
+            const sectionId = current.getAttribute('id');
+            
+            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                document.querySelector('.navbar-nav a[href*=' + sectionId + ']').classList.add('active');
+            } else {
+                document.querySelector('.navbar-nav a[href*=' + sectionId + ']').classList.remove('active');
+            }
+        });
+    }
+    
+    window.addEventListener('scroll', navHighlighter);
+
+    // Counter animation
+    const startCounters = () => {
+        const counters = document.querySelectorAll('.counter-number');
+        const speed = 200;
+        
+        counters.forEach(counter => {
+            const animate = () => {
+                const value = +counter.getAttribute('data-count');
+                const data = +counter.innerText;
+                
+                const time = value / speed;
+                if (data < value) {
+                    counter.innerText = Math.ceil(data + time);
+                    setTimeout(animate, 15);
+                } else {
+                    counter.innerText = value;
+                }
+            }
+            animate();
+        });
+    }
+
+    // Start counters when they come into view
+    const counterSection = document.querySelector('.stats-counter');
+    
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                startCounters();
+                counterObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    if (counterSection) {
+        counterObserver.observe(counterSection);
+    }
+
+    // Scroll animation for all elements with fade-in class
+    const fadeElements = document.querySelectorAll('.fade-in');
+    
+    const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    fadeElements.forEach(element => {
+        fadeObserver.observe(element);
+    });
+
+    // Handle form submissions with validation
     const contactForm = document.getElementById('contactForm');
     const quoteForm = document.getElementById('quoteForm');
     
-    // Contact form submission
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            // In a real implementation, you would send the form data to a server
-            // For now, we'll just show a success message
-            const formData = new FormData(contactForm);
-            const formValues = {};
             
-            formData.forEach((value, key) => {
-                formValues[key] = value;
-            });
-            
-            console.log('Contact form submission:', formValues);
-            
-            // Show success message
-            alert('Thank you for contacting Ubora Services Limited. We will get back to you shortly!');
-            contactForm.reset();
+            // Basic validation
+            if (validateForm(this)) {
+                // Show success message (in a real app, you would send the form data to a server)
+                showFormSuccessMessage(contactForm, 'Thank you for contacting us! We will get back to you soon.');
+            }
         });
     }
     
-    // Quote form submission
     if (quoteForm) {
         quoteForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            // In a real implementation, you would send the form data to a server
-            // For now, we'll just show a success message
-            const formData = new FormData(quoteForm);
-            const formValues = {};
             
-            formData.forEach((value, key) => {
-                formValues[key] = value;
-            });
-            
-            console.log('Quote form submission:', formValues);
-            
-            // Show success message
-            alert('Thank you for requesting a quote from Ubora Services Limited. We will prepare a custom quote and contact you shortly!');
-            quoteForm.reset();
+            // Basic validation
+            if (validateForm(this)) {
+                // Show success message (in a real app, you would send the form data to a server)
+                showFormSuccessMessage(quoteForm, 'Thank you for requesting a quote! Our team will provide a detailed estimate within 24 hours.');
+            }
         });
     }
     
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
+    function validateForm(form) {
+        let isValid = true;
+        const inputs = form.querySelectorAll('input[required], textarea[required], select[required]');
+        
+        inputs.forEach(input => {
+            if (!input.value.trim()) {
+                isValid = false;
+                input.classList.add('is-invalid');
+            } else {
+                input.classList.remove('is-invalid');
+            }
             
-            const targetId = this.getAttribute('href');
+            // Check email format
+            if (input.type === 'email' && input.value.trim()) {
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(input.value)) {
+                    isValid = false;
+                    input.classList.add('is-invalid');
+                }
+            }
             
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80, // Offset for the fixed header
-                    behavior: 'smooth'
-                });
+            // Check phone format (simple validation)
+            if (input.id.includes('Phone') && input.value.trim()) {
+                const phonePattern = /^[\d\s\+\-\(\)]{10,15}$/;
+                if (!phonePattern.test(input.value)) {
+                    isValid = false;
+                    input.classList.add('is-invalid');
+                }
             }
         });
-    });
+        
+        return isValid;
+    }
     
-    // Add active class to nav items when scrolling
+    function showFormSuccessMessage(form, message) {
+        // Create and show success message
+        const successDiv = document.createElement('div');
+        successDiv.className = 'alert alert-success mt-3';
+        successDiv.innerText = message;
+        
+        form.appendChild(successDiv);
+        
+        // Reset form
+        form.reset();
+        
+        // Remove message after 5 seconds
+        setTimeout(() => {
+            successDiv.remove();
+        }, 5000);
+    }
+
+    // Add fade-in class to elements we want to animate on scroll
+    document.querySelectorAll('.service-card, .why-us-card, .client-logo, .contact-info, .contact-form, .quote-card').forEach(el => {
+        el.classList.add('fade-in');
+    });
+
+    // Sticky navbar with shadow on scroll
     window.addEventListener('scroll', function() {
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-        
-        let current = '';
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            
-            if (pageYOffset >= sectionTop - 100) {
-                current = section.getAttribute('id');
-            }
-        });
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('active');
-            }
-        });
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 100) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
     });
-    
-    // Add animation on scroll (simple implementation)
-    function animateOnScroll() {
-        const elements = document.querySelectorAll('.service-card, .client-logo, .why-us-item');
-        
-        elements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const screenPosition = window.innerHeight / 1.3;
-            
-            if (elementPosition < screenPosition) {
-                element.style.opacity = '1';
-                element.style.transform = element.classList.contains('service-card') ? 
-                    'translateY(0)' : element.classList.contains('client-logo') ? 
-                    'scale(1)' : 'translateX(0)';
-            }
+
+    // Initialize image lazy loading
+    if ('loading' in HTMLImageElement.prototype) {
+        const images = document.querySelectorAll('img[loading="lazy"]');
+        images.forEach(img => {
+            img.src = img.dataset.src;
         });
+    } else {
+        // Fallback for browsers that don't support lazy loading
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
+        document.body.appendChild(script);
     }
-    
-    // Initial styles for animation elements
-    document.querySelectorAll('.service-card').forEach(element => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(30px)';
-        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    });
-    
-    document.querySelectorAll('.client-logo').forEach(element => {
-        element.style.opacity = '0';
-        element.style.transform = 'scale(0.8)';
-        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    });
-    
-    document.querySelectorAll('.why-us-item').forEach((element, index) => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateX(30px)';
-        element.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-    });
-    
-    // Run animation check on load and scroll
-    window.addEventListener('load', animateOnScroll);
-    window.addEventListener('scroll', animateOnScroll);
 });
