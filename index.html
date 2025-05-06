@@ -8,18 +8,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts - Updated with Montserrat and Open Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
     <!-- Header with Navigation -->
     <header class="sticky-top">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
                 <a class="navbar-brand" href="#">
-                    <img src="images/ubora-logo.png" alt="Ubora Services Limited" height="60">
+                    <!-- Clean text-based logo instead of image -->
+                    <h1 class="text-logo">UBORA <span>SERVICES</span><small>LIMITED</small></h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -42,7 +43,7 @@
                             <a class="nav-link" href="#contact">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="btn btn-primary quote-btn" href="#quote">Request Quote</a>
+                            <a class="btn btn-secondary quote-btn" href="#quote">Request Quote</a>
                         </li>
                     </ul>
                 </div>
@@ -54,19 +55,27 @@
     <section id="hero" class="py-5">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <h1>Your Trusted Service Partner Since 2014</h1>
-                    <p class="lead">Professional cleaning, fumigation, waste collection and general services across 14 counties in Western Kenya.</p>
+                <div class="col-lg-7">
+                    <h1>Professional Services You Can Trust Since 2014</h1>
+                    <p class="lead">Offering licensed cleaning, fumigation, waste collection, and general services across 14 counties in Western Kenya.</p>
+                    <div class="d-flex mt-4">
+                        <div class="certification-badge me-2">
+                            <i class="fas fa-certificate"></i> NEMA Licensed
+                        </div>
+                        <div class="certification-badge">
+                            <i class="fas fa-shield-alt"></i> Pest Control Board Certified
+                        </div>
+                    </div>
                     <div class="hero-buttons">
-                        <a href="#contact" class="btn btn-primary me-3">Get in Touch</a>
-                        <a href="https://wa.me/254728088486" class="btn btn-success whatsapp-btn">
+                        <a href="#quote" class="btn btn-secondary btn-lg me-3">Request a Quote</a>
+                        <a href="https://wa.me/254728088486" class="btn btn-success btn-lg whatsapp-btn">
                             <i class="fab fa-whatsapp"></i> WhatsApp Us
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-5">
                     <div class="hero-image">
-                        <img src="images/hero-image.jpg" alt="Ubora Services" class="img-fluid rounded">
+                        <img src="images/hero-image.jpg" alt="Ubora Services Professional Team" class="img-fluid rounded">
                     </div>
                 </div>
             </div>
@@ -89,7 +98,10 @@
                             <i class="fas fa-broom"></i>
                         </div>
                         <h3>Cleaning Services</h3>
-                        <p>Professional cleaning of facilities and homes with attention to detail.</p>
+                        <p>Professional cleaning of facilities and homes with attention to detail and quality assurance.</p>
+                        <div class="license-badge">
+                            <i class="fas fa-check-circle"></i> Professional Staff
+                        </div>
                     </div>
                 </div>
 
@@ -101,6 +113,9 @@
                         </div>
                         <h3>Fumigation</h3>
                         <p>Licensed fumigation services against all flying and crawling pests by the Pest Control Products Board.</p>
+                        <div class="license-badge">
+                            <i class="fas fa-certificate"></i> PCPB Certified
+                        </div>
                     </div>
                 </div>
 
@@ -112,6 +127,9 @@
                         </div>
                         <h3>Waste Collection</h3>
                         <p>NEMA-licensed collection of general garbage, hazardous waste, biomedical waste, and sewage.</p>
+                        <div class="license-badge">
+                            <i class="fas fa-certificate"></i> NEMA Licensed
+                        </div>
                     </div>
                 </div>
 
@@ -123,6 +141,9 @@
                         </div>
                         <h3>Errand Services</h3>
                         <p>General errands, farm supervision, construction monitoring, and medical errands.</p>
+                        <div class="license-badge">
+                            <i class="fas fa-check-circle"></i> Trusted Personnel
+                        </div>
                     </div>
                 </div>
 
@@ -134,6 +155,9 @@
                         </div>
                         <h3>Electrical & Solar</h3>
                         <p>Professional electrical, solar, and CCTV installation and repair services.</p>
+                        <div class="license-badge">
+                            <i class="fas fa-tools"></i> Certified Technicians
+                        </div>
                     </div>
                 </div>
 
@@ -145,6 +169,9 @@
                         </div>
                         <h3>Building Services</h3>
                         <p>Plumbing, masonry, painting, tiling, and office partitioning services.</p>
+                        <div class="license-badge">
+                            <i class="fas fa-user-hard-hat"></i> Skilled Craftsmen
+                        </div>
                     </div>
                 </div>
             </div>
@@ -156,40 +183,43 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0">
-                    <img src="images/about-image.jpg" alt="Why Choose Ubora Services" class="img-fluid rounded">
+                    <img src="images/about-image.jpg" alt="Ubora Services Team at Work" class="img-fluid rounded shadow">
                 </div>
                 <div class="col-lg-6">
-                    <div class="section-header mb-4">
-                        <h2>Why Do Business With Us</h2>
-                    </div>
-                    <div class="why-us-points">
-                        <div class="why-us-item">
-                            <i class="fas fa-check-circle"></i>
-                            <p>Registered business operating since 2014</p>
+                    <div class="why-us-card">
+                        <div class="section-header text-start mb-4">
+                            <h2 class="text-start">Why Choose Us</h2>
+                            <p class="text-start">Reliable, professional, and trusted since 2014</p>
                         </div>
-                        <div class="why-us-item">
-                            <i class="fas fa-check-circle"></i>
-                            <p>Variety of services under one umbrella</p>
-                        </div>
-                        <div class="why-us-item">
-                            <i class="fas fa-check-circle"></i>
-                            <p>Necessary certifications and licenses</p>
-                        </div>
-                        <div class="why-us-item">
-                            <i class="fas fa-check-circle"></i>
-                            <p>Well qualified, experienced and disciplined staff</p>
-                        </div>
-                        <div class="why-us-item">
-                            <i class="fas fa-check-circle"></i>
-                            <p>Honesty and attention to detail</p>
-                        </div>
-                        <div class="why-us-item">
-                            <i class="fas fa-check-circle"></i>
-                            <p>Unmatched quality of workmanship and service</p>
-                        </div>
-                        <div class="why-us-item">
-                            <i class="fas fa-check-circle"></i>
-                            <p>VAT registered and tax compliant</p>
+                        <div class="why-us-points">
+                            <div class="why-us-item">
+                                <i class="fas fa-building"></i>
+                                <p>Registered business operating since 2014</p>
+                            </div>
+                            <div class="why-us-item">
+                                <i class="fas fa-umbrella"></i>
+                                <p>Variety of services under one umbrella</p>
+                            </div>
+                            <div class="why-us-item">
+                                <i class="fas fa-certificate"></i>
+                                <p>Necessary certifications and licenses</p>
+                            </div>
+                            <div class="why-us-item">
+                                <i class="fas fa-user-tie"></i>
+                                <p>Well qualified, experienced and disciplined staff</p>
+                            </div>
+                            <div class="why-us-item">
+                                <i class="fas fa-check-double"></i>
+                                <p>Honesty and attention to detail</p>
+                            </div>
+                            <div class="why-us-item">
+                                <i class="fas fa-star"></i>
+                                <p>Unmatched quality of workmanship and service</p>
+                            </div>
+                            <div class="why-us-item">
+                                <i class="fas fa-receipt"></i>
+                                <p>VAT registered and tax compliant</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -231,8 +261,8 @@
     <section id="clients" class="py-5">
         <div class="container">
             <div class="section-header text-center mb-5">
-                <h2>Our Clients</h2>
-                <p>Trusted by leading businesses and organizations</p>
+                <h2>Our Trusted Clients</h2>
+                <p>Leading businesses and organizations who rely on our services</p>
             </div>
             <div class="row g-4">
                 <div class="col-6 col-md-4 col-lg-3">
@@ -245,7 +275,7 @@
                     <div class="client-logo">Synergy Clinics</div>
                 </div>
                 <div class="col-6 col-md-4 col-lg-3">
-                    <div class="client-logo">Impact Research and Development Organization</div>
+                    <div class="client-logo">Impact Research</div>
                 </div>
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="client-logo">USAMRU</div>
@@ -263,7 +293,7 @@
                     <div class="client-logo">Kisumu Hotel</div>
                 </div>
                 <div class="col-6 col-md-4 col-lg-3">
-                    <div class="client-logo">Maseno University Retirement Benefits Scheme</div>
+                    <div class="client-logo">Maseno University</div>
                 </div>
             </div>
         </div>
@@ -286,14 +316,18 @@
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <p><a href="mailto:info@uboraservices.co.ke">info@uboraservices.co.ke</a></p>
-                            <p><a href="mailto:uboraservices@yahoo.com">uboraservices@yahoo.com</a></p>
+                            <div>
+                                <p><a href="mailto:info@uboraservices.co.ke">info@uboraservices.co.ke</a></p>
+                                <p><a href="mailto:uboraservices@yahoo.com">uboraservices@yahoo.com</a></p>
+                            </div>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <p><a href="tel:+254728088486">+254 728 088 486</a></p>
-                            <p><a href="tel:+254720475597">+254 720 475 597</a></p>
-                            <p><a href="tel:+254743809980">+254 743 809 980</a></p>
+                            <div>
+                                <p><a href="tel:+254728088486">+254 728 088 486</a></p>
+                                <p><a href="tel:+254720475597">+254 720 475 597</a></p>
+                                <p><a href="tel:+254743809980">+254 743 809 980</a></p>
+                            </div>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-mailbox"></i>
@@ -366,28 +400,32 @@
     <section id="quote" class="py-5">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-8">
+                <div class="col-md-10 col-lg-8">
                     <div class="quote-card">
                         <div class="section-header text-center mb-4">
-                            <h2>Request a Quote</h2>
-                            <p>Get a customized quote for our services</p>
+                            <h2>Request a Free Quote</h2>
+                            <p>Get a customized quote for our professional services</p>
                         </div>
                         <form id="quoteForm" class="quote-form">
-                            <div class="mb-3">
-                                <label for="quoteName" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="quoteName" placeholder="Your Name" required>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="quoteName" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="quoteName" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="quoteEmail" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="quoteEmail" placeholder="Your Email" required>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="quoteEmail" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="quoteEmail" placeholder="Your Email" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="quotePhone" class="form-label">Phone</label>
-                                <input type="tel" class="form-control" id="quotePhone" placeholder="Your Phone Number" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="quoteLocation" class="form-label">Location</label>
-                                <input type="text" class="form-control" id="quoteLocation" placeholder="Your Location" required>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="quotePhone" class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" id="quotePhone" placeholder="Your Phone Number" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="quoteLocation" class="form-label">Location</label>
+                                    <input type="text" class="form-control" id="quoteLocation" placeholder="Your Location" required>
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label for="quoteService" class="form-label">Service Required</label>
@@ -405,8 +443,40 @@
                                 <label for="quoteDetails" class="form-label">Project Details</label>
                                 <textarea class="form-control" id="quoteDetails" rows="4" placeholder="Please describe your requirements in detail" required></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100">Request Quote</button>
+                            <button type="submit" class="btn btn-secondary w-100 py-3">Request Quote</button>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Indicators -->
+    <section class="py-4 bg-light">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 mb-3 mb-md-0">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <i class="fas fa-certificate me-2 text-success fs-4"></i>
+                        <p class="mb-0 fw-bold">NEMA Licensed</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3 mb-md-0">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <i class="fas fa-shield-alt me-2 text-success fs-4"></i>
+                        <p class="mb-0 fw-bold">Pest Control Certified</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3 mb-md-0">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <i class="fas fa-calendar-check me-2 text-success fs-4"></i>
+                        <p class="mb-0 fw-bold">Est. Since 2014</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <i class="fas fa-medal me-2 text-success fs-4"></i>
+                        <p class="mb-0 fw-bold">Quality Assured</p>
                     </div>
                 </div>
             </div>
@@ -421,7 +491,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="py-4 bg-dark text-white">
+    <footer class="py-4">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4 mb-md-0">
