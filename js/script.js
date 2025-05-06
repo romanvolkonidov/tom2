@@ -9,6 +9,29 @@ document.addEventListener('DOMContentLoaded', function() {
         mirror: false
     });
 
+    // Smooth scrolling for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return; // Skip if href is just "#"
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                // Adjust for fixed header
+                const headerOffset = 80;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
     // Navbar active state on scroll
     const sections = document.querySelectorAll('section[id]');
     
