@@ -152,6 +152,84 @@
     opacity: 1 !important;
     will-change: auto;
   }
+  
+  /* Optimize rendering for off-screen content */
+  .section-services,
+  .section-why-us,
+  .section-clients,
+  .section-contact,
+  .section-quote,
+  .stats-counter,
+  #areas,
+  footer {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 300px;
+  }
+  
+  /* Optimize hero section rendering */
+  #hero {
+    contain: layout style;
+    min-height: 400px;
+  }
+  
+  /* Optimize counters */
+  .counter-number {
+    transition: none !important;
+  }
+  
+  /* Eliminate all hover states on mobile */
+  .btn:hover, .nav-link:hover, a:hover, .service-card:hover {
+    transform: none !important;
+    box-shadow: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  
+  /* Simplify all backgrounds for better performance */
+  #hero, .stats-counter, footer {
+    background: var(--primary-color) !important;
+    background-image: none !important;
+  }
+  
+  /* Simplify all drop shadows */
+  .shadow, .card, .navbar {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
+  }
+  
+  /* Remove rounded corners for better performance */
+  .rounded {
+    border-radius: 4px !important;
+  }
+  
+  /* Disable font awesome animations */
+  .fa, .fas, .fab, .far {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  /* Force immediate show for images, avoid content shifting */
+  img[loading="lazy"] {
+    opacity: 1 !important;
+  }
+  
+  /* Disable Bootstrap transitions */
+  .fade, .collapse, .collapsing {
+    transition: none !important;
+  }
+  
+  /* Optimize FontAwesome icons */
+  .fa, .fas, .far, .fab {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-display: block;
+  }
+  
+  /* Eliminate third-party widget animations */
+  iframe, .map-container, .google-map {
+    transform: translateZ(0);
+    will-change: transform;
+    contain: strict;
+  }
 }
 
 /* Force hardware acceleration for smoother scrolling */
@@ -212,4 +290,33 @@ iframe {
 .hero-image img {
   height: auto;
   aspect-ratio: 1.35;
+}
+
+/* No-animation class for better performance */
+.no-animation * {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+}
+
+/* Prevent font loading FOUT */
+.wf-loading {
+  opacity: 0;
+}
+
+/* Optimize text display during loading */
+.wf-active, .wf-inactive {
+  opacity: 1;
+}
+
+/* Optimize Google Maps container */
+.map-placeholder {
+  min-height: 300px;
+  background-color: #f5f5f5;
+  contain: strict;
+}
+
+/* Set explicit font fallbacks */
+body, button, input, select, textarea {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
 }

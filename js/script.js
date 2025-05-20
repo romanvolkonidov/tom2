@@ -3,13 +3,15 @@
 // Register Service Worker for PWA capabilities and caching
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('Service Worker registered with scope:', registration.scope);
-            })
-            .catch(error => {
-                console.error('Service Worker registration failed:', error);
-            });
+        setTimeout(() => {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                })
+                .catch(error => {
+                    console.error('Service Worker registration failed:', error);
+                });
+        }, 3000); // Delay registration to improve initial load performance
     });
 }
 
@@ -23,16 +25,70 @@ const perf = {
         return conn && (conn.saveData || ['slow-2g', '2g', '3g'].includes(conn.effectiveType));
     },
     supportsIntersectionObserver: 'IntersectionObserver' in window,
-    supportsIdleCallback: 'requestIdleCallback' in window
+    supportsIdleCallback: 'requestIdleCallback' in window,
+    
+    // Add SEO-friendly image handling
+    optimizeImagesForSEO: (img) => {
+        // Ensure all images have proper alt text for SEO
+        if (!img.alt || img.alt === '') {
+            // Generate descriptive alt text based on context
+            const context = img.closest('section')?.id || '';
+            if (context === 'hero') {
+                img.alt = 'Ubora Services Professional Cleaning Team in Kenya';
+            } else if (context === 'services') {
+                img.alt = 'Professional Services by Ubora in Western Kenya';
+            } else if (context === 'about') {
+                img.alt = 'Ubora Services Team at Work in Kisumu, Kenya';
+            } else if (context === 'clients') {
+                img.alt = 'Clients of Ubora Services in Kenya';
+            } else {
+                img.alt = 'Ubora Professional Services in Western Kenya';
+            }
+        }
+        
+        // Add title attribute for additional SEO benefit if not present
+        if (!img.title) {
+            img.title = img.alt;
+        }
+        
+        // Add loading attribute if not present
+        if (!img.loading) {
+            img.loading = img.closest('#hero') ? 'eager' : 'lazy';
+        }
+        
+        return img;
+    }
 };
 
 // Optimized initialization with requestIdleCallback
 const initializeApp = () => {
-    // Set performance classes
+    // Set performance classes immediately
     const classList = document.documentElement.classList;
     if (perf.isMobile) classList.add('mobile-device');
     if (perf.isLowEndDevice) classList.add('low-end-device');
     if (perf.hasSlowConnection()) classList.add('slow-connection');
+    
+    // Mobile-specific optimizations - apply immediately for better performance
+    if (perf.isMobile) {
+        // Disable all animations and transitions
+        document.body.classList.add('no-animation');
+        
+        // Set image loading to eager for above-fold images, lazy for others
+        const aboveFoldImages = document.querySelectorAll('#hero img');
+        aboveFoldImages.forEach(img => {
+            img.loading = 'eager';
+            img.decoding = 'async';
+        });
+    }
+    
+    // Queue less critical initializations in idle callback or setTimeout
+    const queueInitialization = (callback) => {
+        if (perf.supportsIdleCallback) {
+            requestIdleCallback(callback, { timeout: 2000 });
+        } else {
+            setTimeout(callback, 100);
+        }
+    };
     
     // Optimize image loading with native lazy loading and data URIs
     const optimizeImages = () => {
@@ -43,8 +99,11 @@ const initializeApp = () => {
             img.loading = 'lazy';
             img.decoding = 'async';
             
-            // Create placeholder
-            if (!img.parentElement.classList.contains('img-placeholder')) {
+            // SEO optimization for images
+            perf.optimizeImagesForSEO(img);
+            
+            // Create placeholder for non-hero images only
+            if (!img.closest('#hero') && !img.parentElement.classList.contains('img-placeholder')) {
                 const placeholder = document.createElement('div');
                 placeholder.className = 'img-placeholder';
                 img.parentNode.insertBefore(placeholder, img);
@@ -52,12 +111,12 @@ const initializeApp = () => {
             }
         };
 
-        // Process images in chunks
+        // Process images in chunks, prioritizing visible ones
         const processChunk = (i) => {
-            const chunk = Array.from(images).slice(i, i + 5);
+            const chunk = Array.from(images).slice(i, i + 3); // Reduce chunk size for mobile
             chunk.forEach(processImage);
-            if (i + 5 < images.length) {
-                (perf.supportsIdleCallback ? requestIdleCallback : setTimeout)(() => processChunk(i + 5));
+            if (i + 3 < images.length) {
+                (perf.supportsIdleCallback ? requestIdleCallback : setTimeout)(() => processChunk(i + 3), { timeout: 500 });
             }
         };
         
@@ -74,15 +133,23 @@ const initializeApp = () => {
                     entry.target.classList.add('in-viewport');
                     observer.unobserve(entry.target);
                     
-                    // Load section-specific resources
-                    loadSectionResources(entry.target);
+                    // On mobile, limit resource loading for better performance
+                    if (!perf.isMobile || entry.target.id === 'hero' || entry.target.id === 'services') {
+                        // Load section-specific resources
+                        queueInitialization(() => loadSectionResources(entry.target));
+                    } else {
+                        // For non-critical sections on mobile, delay loading even more
+                        setTimeout(() => loadSectionResources(entry.target), 1000);
+                    }
                 }
             });
         };
 
+        // More aggressive thresholds for mobile
         const observer = new IntersectionObserver(observerCallback, {
-            rootMargin: '50px',
-            threshold: perf.isMobile ? 0.1 : 0.2        });
+            rootMargin: perf.isMobile ? '10px' : '50px',
+            threshold: perf.isMobile ? 0.05 : 0.2
+        });
 
         // Initialize section observers
         const sections = document.querySelectorAll('section');
@@ -102,36 +169,44 @@ const initializeApp = () => {
             img.removeAttribute('data-src');
         });
 
-        // Load section-specific scripts
-        section.querySelectorAll('script[data-src]').forEach(script => {
-            const newScript = document.createElement('script');
-            newScript.src = script.dataset.src;
-            newScript.async = true;
-            script.parentNode.replaceChild(newScript, script);
-        });
+        // Load section-specific scripts - only if required
+        if (!perf.isMobile) {
+            section.querySelectorAll('script[data-src]').forEach(script => {
+                const newScript = document.createElement('script');
+                newScript.src = script.dataset.src;
+                newScript.async = true;
+                script.parentNode.replaceChild(newScript, script);
+            });
+        }
     };
 
     // Initialize optimizations based on device capabilities
     const initialize = () => {
+        // First-priority optimization
         optimizeImages();
-        initializeSections();
+        
+        // Second-priority optimization
+        queueInitialization(initializeSections);
 
-        // Conditional AOS initialization only for high-end devices
+        // Only for high-end devices - AOS initialization
         if (!perf.isMobile && !perf.isLowEndDevice && !perf.prefersReducedMotion && typeof AOS !== 'undefined') {
-            requestAnimationFrame(() => {
-                AOS.init({
-                    duration: 400,
-                    easing: 'ease-out',
-                    once: true,
-                    mirror: false,
-                    disable: perf.isMobile ? 'phone' : false,
-                    offset: perf.isMobile ? 20 : 50
+            queueInitialization(() => {
+                requestAnimationFrame(() => {
+                    AOS.init({
+                        duration: 400,
+                        easing: 'ease-out',
+                        once: true,
+                        mirror: false,
+                        disable: perf.isMobile ? 'phone' : false,
+                        offset: perf.isMobile ? 20 : 50
+                    });
                 });
             });
         }
     };
 
     // Smooth scrolling for all anchor links with performance optimizations
+    // Use passive event listeners for better scroll performance
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -146,100 +221,184 @@ const initializeApp = () => {
                 const elementPosition = targetElement.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                 
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
+                // Simplified scrolling for mobile
+                if (perf.isMobile) {
+                    window.scrollTo(0, offsetPosition);
+                } else {
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             }
-        });
-    });
-
-    // Ensure Home link scrolls to hero section
-    // This is already set in the HTML: <a class="nav-link active" href="#hero">Home</a>
-    // But ensure smooth scroll and offset for fixed header
-
-    document.addEventListener('DOMContentLoaded', function() {
-      const homeLink = document.querySelector('.navbar-nav .nav-link[href="#hero"]');
-      if (homeLink) {
-        homeLink.addEventListener('click', function(e) {
-          e.preventDefault();
-          const hero = document.getElementById('hero');
-          if (hero) {
-            const headerOffset = 80;
-            const elementPosition = hero.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: 'smooth'
-            });
-          }
-        });
-      }
+        }, { passive: false });
     });
 
     // Use IntersectionObserver for navbar active state rather than scroll events
-    const navLinks = document.querySelectorAll('.navbar-nav a');
-    const sections = document.querySelectorAll('section[id]');
-    
-    // Create the observer with appropriate options
-    const navObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const id = entry.target.getAttribute('id');
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + id) {
-                        link.classList.add('active');
+    // Only initialize if not on a low-end device
+    if (!perf.isLowEndDevice) {
+        queueInitialization(() => {
+            const navLinks = document.querySelectorAll('.navbar-nav a');
+            const sections = document.querySelectorAll('section[id]');
+            
+            // Create the observer with appropriate options
+            const navObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        
+                        // Update the active state in the navbar
+                        requestAnimationFrame(() => {
+                            navLinks.forEach(link => {
+                                link.classList.remove('active');
+                                if (link.getAttribute('href') === '#' + id) {
+                                    link.classList.add('active');
+                                }
+                            });
+                        });
+                        
+                        // SEO enhancement: Update page title and description based on visible section
+                        // This helps search engines better understand the content when specific sections are shared
+                        if (id) {
+                            updateMetadataForSection(id);
+                        }
                     }
                 });
-            }
-        });
-    }, { rootMargin: "-30% 0px -70% 0px" });
-    
-    // Observe each section
-    sections.forEach(section => {
-        navObserver.observe(section);
-    });
-
-    // Optimized Counter animation using IntersectionObserver
-    const startCounters = () => {
-        const counters = document.querySelectorAll('.counter-number');
-        const speed = 200;
-        
-        counters.forEach(counter => {
-            const animate = () => {
-                const value = +counter.getAttribute('data-count');
-                const data = +counter.innerText;
-                
-                const time = value / speed;
-                if (data < value) {
-                    counter.innerText = Math.ceil(data + time);
-                    // Use requestAnimationFrame for smoother animations
-                    requestAnimationFrame(animate);
-                } else {
-                    counter.innerText = value;
-                }
-            }
-            requestAnimationFrame(animate);
-        });
-    }
-
-    // Use IntersectionObserver for counter animation
-    const counterSection = document.querySelector('.stats-counter');
-    
-    if (counterSection) {
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    startCounters();
-                    counterObserver.unobserve(entry.target);
-                }
+            }, { rootMargin: "-30% 0px -70% 0px" });
+            
+            // Observe each section
+            sections.forEach(section => {
+                navObserver.observe(section);
             });
-        }, { threshold: 0.5 });
-        
-        counterObserver.observe(counterSection);
+            
+            // SEO enhancement: Function to update metadata based on visible section
+            function updateMetadataForSection(sectionId) {
+                let newTitle = document.title;
+                let newDescription = document.querySelector('meta[name="description"]').getAttribute('content');
+                
+                // Store original values if we haven't yet
+                if (!window.originalMetadata) {
+                    window.originalMetadata = {
+                        title: document.title,
+                        description: newDescription
+                    };
+                }
+                
+                // Update metadata based on section
+                switch(sectionId) {
+                    case 'services':
+                        newTitle = 'Professional Services in Western Kenya | Ubora Services';
+                        newDescription = 'Our professional services include cleaning, fumigation, waste collection, errand services, electrical & solar solutions, and building services across Western Kenya.';
+                        break;
+                    case 'cleaning-services':
+                        newTitle = 'Professional Cleaning Services in Kenya | Ubora Services';
+                        newDescription = 'Expert cleaning services for commercial facilities, offices and homes with meticulous attention to detail throughout Kisumu and Western Kenya.';
+                        break;
+                    case 'fumigation-services':
+                        newTitle = 'Licensed Fumigation Services in Kenya | Ubora Services';
+                        newDescription = 'PCPB-certified fumigation services against flying and crawling pests by trained professionals across Western Kenya.';
+                        break;
+                    case 'waste-collection':
+                        newTitle = 'NEMA-Licensed Waste Collection in Kenya | Ubora Services';
+                        newDescription = 'Professional collection of general garbage, hazardous waste, biomedical waste, and sewage across Western Kenya counties.';
+                        break;
+                    case 'about':
+                        newTitle = 'About Ubora Services | Professional Services Since 2014';
+                        newDescription = 'Trusted service provider established in 2014, offering a variety of professional services with certified staff across 14 counties in Western Kenya.';
+                        break;
+                    case 'contact':
+                        newTitle = 'Contact Ubora Services | Professional Services in Kenya';
+                        newDescription = 'Get in touch with Ubora Services for professional cleaning, fumigation, waste collection and other services in Kisumu and Western Kenya.';
+                        break;
+                    case 'quote':
+                        newTitle = 'Request a Quote | Ubora Professional Services in Kenya';
+                        newDescription = 'Request a customized quote for our professional cleaning, fumigation, waste collection and general services across Western Kenya.';
+                        break;
+                    default:
+                        // Reset to original values for home or unlisted sections
+                        if (window.originalMetadata) {
+                            newTitle = window.originalMetadata.title;
+                            newDescription = window.originalMetadata.description;
+                        }
+                }
+                
+                // Update the document title and description
+                document.title = newTitle;
+                document.querySelector('meta[name="description"]').setAttribute('content', newDescription);
+                
+                // If this browser supports the History API, update the URL fragment without reload
+                // This allows search engines to index each section as if it were a separate page
+                if (history.replaceState && sectionId !== 'hero') {
+                    const newUrl = window.location.pathname + '#' + sectionId;
+                    history.replaceState(null, newTitle, newUrl);
+                }
+            }
+        });
     }
 
+    // Optimized Counter animation - only initialize when visible and if not on a low-end device
+    if (!perf.isLowEndDevice && !perf.isMobile) {
+        const startCounters = () => {
+            const counters = document.querySelectorAll('.counter-number');
+            const speed = 200;
+            
+            counters.forEach(counter => {
+                const animate = () => {
+                    const value = +counter.getAttribute('data-count');
+                    const data = +counter.innerText;
+                    
+                    const time = value / speed;
+                    if (data < value) {
+                        counter.innerText = Math.ceil(data + time);
+                        // Use requestAnimationFrame for smoother animations
+                        requestAnimationFrame(animate);
+                    } else {
+                        counter.innerText = value;
+                    }
+                }
+                requestAnimationFrame(animate);
+            });
+        }
+
+        // Use IntersectionObserver for counter animation
+        const counterSection = document.querySelector('.stats-counter');
+        
+        if (counterSection) {
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        startCounters();
+                        counterObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            counterObserver.observe(counterSection);
+        }
+    } else if (perf.isMobile) {
+        // For mobile/low-end, just set the counter values immediately
+        document.querySelectorAll('.counter-number').forEach(counter => {
+            const value = counter.getAttribute('data-count');
+            counter.innerText = value;
+        });
+    }
+
+    // Initialize only critical functionality for first paint
+    initialize();
+    
+    // Handle other initializations after first contentful paint
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => {
+            // Register these event handlers only after the page has loaded
+            initializeEventHandlers();
+        }, { timeout: 2000 });
+    } else {
+        setTimeout(initializeEventHandlers, 1000);
+    }
+};
+
+// Separate function for event handlers to delay their initialization
+function initializeEventHandlers() {
     // Handle form submissions with validation
     const contactForm = document.getElementById('contactForm');
     const quoteForm = document.getElementById('quoteForm');
@@ -371,151 +530,27 @@ const initializeApp = () => {
             successDiv.remove();
         }, 5000);
     }
-
-    // Memory-efficient fade-in animations with intersection observer and requestAnimationFrame
-    const fadeElements = new Set();
-    const fadeObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const element = entry.target;
-                fadeElements.add(element);
-                
-                requestAnimationFrame(() => {
-                    element.classList.add('visible');
-                    fadeElements.delete(element);
-                    fadeObserver.unobserve(element);
-                });
-            }
-        });
-    }, { 
-        threshold: perf.isMobile ? 0.1 : 0.2,
-        rootMargin: perf.isMobile ? "20px" : "50px" 
-    });
     
-    // Batch DOM operations for better performance
-    const elementsToFade = document.querySelectorAll(
-        '.service-card, .why-us-card, .client-logo, .contact-info, .contact-form, .quote-card'
-    );
-    
-    if (elementsToFade.length > 0) {
-        const processFadeElements = (startIndex) => {
-            const endIndex = Math.min(startIndex + 5, elementsToFade.length);
-            
-            for (let i = startIndex; i < endIndex; i++) {
-                const el = elementsToFade[i];
-                el.classList.add('fade-in');
-                fadeObserver.observe(el);
-            }
-            
-            if (endIndex < elementsToFade.length) {
-                (perf.supportsIdleCallback ? requestIdleCallback : setTimeout)(() => {
-                    processFadeElements(endIndex);
-                });
-            }
-        };
+    function showFormErrorMessage(form, message) {
+        // Create and show error message
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'alert alert-danger mt-3';
+        errorDiv.innerText = message;
         
-        processFadeElements(0);
+        form.appendChild(errorDiv);
+        
+        // Remove message after 5 seconds
+        setTimeout(() => {
+            errorDiv.remove();
+        }, 5000);
     }
+}
 
-    // Optimize scroll performance with IntersectionObserver and requestAnimationFrame
-    const initScrollHandling = () => {
-        const navbar = document.querySelector('.navbar');
-        const navObserver = new IntersectionObserver(
-            ([entry]) => {
-                requestAnimationFrame(() => {
-                    navbar.classList.toggle('scrolled', !entry.isIntersecting);
-                });
-            }, {
-                threshold: 0,
-                rootMargin: '-100px 0px 0px 0px'
-            }
-        );
-
-        // Observe a sentinel element at the top of the page
-        const sentinel = document.createElement('div');
-        sentinel.style.cssText = 'position: absolute; top: 0; height: 1px; width: 100%; pointer-events: none;';
-        document.body.prepend(sentinel);
-        navObserver.observe(sentinel);
-
-        // Optimize scroll-linked animations
-        const scrollAnimations = new Map();
-        let ticking = false;
-
-        const updateScrollAnimations = () => {
-            const scrollTop = window.scrollY;
-            
-            scrollAnimations.forEach((handler, element) => {
-                if (!element.isConnected) {
-                    scrollAnimations.delete(element);
-                    return;
-                }
-                handler(scrollTop);
-            });
-            
-            ticking = false;
-        };
-
-        // Add scroll handlers with RAF
-        const addScrollHandler = (element, handler) => {
-            scrollAnimations.set(element, handler);
-            if (!ticking) {
-                requestAnimationFrame(updateScrollAnimations);
-                ticking = true;
-            }
-        };
-
-        // Passive scroll listener
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                requestAnimationFrame(updateScrollAnimations);
-                ticking = true;
-            }
-        }, { passive: true });
-
-        return { addScrollHandler };
-    };
-
-    // Initialize scroll handling
-    const scrollHandler = initScrollHandling();
-
-    // Native lazy loading for images
-    if ('loading' in HTMLImageElement.prototype) {
-        // Use native lazy loading
-        const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-        lazyImages.forEach(img => {
-            // Make sure all lazy images have src set
-            if (img.dataset.src) {
-                img.src = img.dataset.src;
-            }
-        });
-    } else {
-        // Fallback for browsers that don't support lazy loading
-        // Use IntersectionObserver instead of external library
-        const lazyImageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const lazyImage = entry.target;
-                    if (lazyImage.dataset.src) {
-                        lazyImage.src = lazyImage.dataset.src;
-                    }
-                    lazyImageObserver.unobserve(lazyImage);
-                }
-            });
-        });
-
-        document.querySelectorAll('img[data-src]').forEach(img => {
-            lazyImageObserver.observe(img);
-        });
-    }
-
-    // Run initialization
-    initialize();
-};
-
-// Initialize the app when document is ready
+// Initialize the app when document is ready or after first paint
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializeApp);
 } else {
+    // If DOMContentLoaded already fired, initialize immediately
     initializeApp();
 }
 
