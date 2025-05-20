@@ -168,15 +168,14 @@
     }
     </script>
     
-    <!-- Resource hints -->
-    <link rel="preload" as="style" href="css/core-critical.css" fetchpriority="high">
+    <!-- Preload critical resources -->
     <link rel="preload" as="image" href="images/1-mobile.webp" media="(max-width: 767px)" fetchpriority="high" type="image/webp">
     <link rel="preload" as="font" href="https://fonts.gstatic.com/s/montserrat/v15/JTURjIg1_i6t8kCHKm45_dJE3gnD_g.woff2" type="font/woff2" crossorigin>
     <link rel="preload" as="font" href="https://fonts.gstatic.com/s/nunito/v16/XRXV3I6Li01BKofINeaB.woff2" type="font/woff2" crossorigin>
     
-    <!-- Inline critical CSS to eliminate render-blocking -->
+    <!-- Inline critical CSS -->
     <style>
-      /* Critical CSS for immediate rendering */
+      /* Critical-path CSS */
       :root {
         --primary-color: #1B512D;
         --secondary-color: #F2A900;
@@ -184,6 +183,11 @@
         --light-bg: #F9F7F3;
         --dark-text: #333333;
         --light-text: #ffffff;
+        --gray-bg: #e9ecef;
+        --light-green: #EAF2EC;
+        --medium-green: #2E7D41;
+        --gradient-primary: linear-gradient(135deg, #1B512D 0%, #2E7D41 100%);
+        --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
       }
       
       body {
@@ -218,7 +222,7 @@
       }
       
       #hero {
-        background-color: var(--primary-color);
+        background: linear-gradient(to right, rgba(27, 81, 45, 0.9), rgba(46, 125, 65, 0.8));
         color: white;
         padding: 2rem 0;
         min-height: 400px;
@@ -228,6 +232,7 @@
         font-size: 2rem;
         margin-bottom: 1rem;
         line-height: 1.2;
+        font-weight: 700;
       }
       
       .container {
@@ -236,6 +241,7 @@
         padding-left: 1rem;
         margin-right: auto;
         margin-left: auto;
+        max-width: 1140px;
       }
       
       .row {
@@ -289,14 +295,57 @@
         margin-top: 1.5rem;
       }
       
-      .hero-buttons a {
-        width: 100%;
+      .navbar-toggler {
+        border: none;
+        background: transparent;
+        cursor: pointer;
       }
       
-      /* Hide off-screen content initially */
-      section:not(#hero) {
-        content-visibility: auto;
-        contain-intrinsic-size: 0 500px;
+      .navbar-brand {
+        text-decoration: none;
+      }
+      
+      .navbar-nav {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .nav-link {
+        padding: 0.5rem 1rem;
+        color: var(--dark-text);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      
+      .certification-badge {
+        display: inline-flex;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.25);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 50px;
+        margin-right: 12px;
+        margin-bottom: 12px;
+        font-weight: 700;
+      }
+      
+      .lead {
+        font-size: 1.2rem;
+      }
+      
+      .d-flex {
+        display: flex;
+      }
+      
+      .rounded {
+        border-radius: 0.25rem;
+      }
+      
+      .img-fluid {
+        max-width: 100%;
+        height: auto;
       }
       
       @media (min-width: 768px) {
@@ -313,44 +362,71 @@
         }
         
         #hero h1 {
-          font-size: 3rem;
+          font-size: 2.5rem;
         }
         
         #hero {
           padding: 4rem 0;
         }
       }
+      
+      /* Optimize content visibility */
+      .section-services,
+      .section-clients,
+      .section-contact,
+      .section-quote {
+        content-visibility: auto;
+        contain-intrinsic-size: 0 500px;
+      }
     </style>
     
-    <!-- Delayed CSS Loading -->
-    <link rel="stylesheet" href="css/core-critical.css" media="all">
-    <link rel="stylesheet" href="css/mobile-performance.css" media="(max-width: 767.98px)" onload="this.media='all'">
+    <!-- Load critical CSS files asynchronously -->
+    <link rel="stylesheet" href="css/critical.css" media="print" onload="this.media='all'">
     
     <!-- Preconnect to required origins -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     
-    <!-- Fonts with optimal loading -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Nunito:wght@400;600&display=swap">
+    <!-- Optimized font loading -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v15/JTURjIg1_i6t8kCHKm45_dJE3gnD_g.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/nunito/v16/XRXV3I6Li01BKofINeaB.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Nunito:wght@400;600&display=swap" media="print" onload="this.media='all'">
     
-    <!-- Non-critical CSS with optimized loading -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" media="print" onload="this.media='all'" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'" crossorigin="anonymous">
+    <!-- Non-critical CSS with deferred loading -->
     <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="css/performance.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="css/mobile-performance.css" media="print" onload="this.media='all'">
     
-    <!-- Manifest for PWA capabilities -->
-    <link rel="manifest" href="manifest.json">
+    <!-- Defer non-critical JavaScript -->
+    <script>
+        // Mobile detection optimization
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+        if (isMobile) document.documentElement.classList.add('mobile-device');
+        
+        // Check for reduced motion preference
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.classList.add('no-animation');
+        }
+        
+        // Low-end device detection
+        if (navigator.deviceMemory && navigator.deviceMemory < 4) {
+            document.documentElement.classList.add('low-end-device');
+        }
+        
+        // Set counter values immediately to avoid animation
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.counter-number').forEach(counter => {
+                counter.textContent = counter.getAttribute('data-count');
+            });
+        });
+    </script>
     
     <!-- Noscript fallback -->
     <noscript>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
       <link rel="stylesheet" href="css/style.css">
       <link rel="stylesheet" href="css/performance.css">
-      <link rel="stylesheet" href="css/core-critical.css">
+      <link rel="stylesheet" href="css/critical.css">
       <link rel="stylesheet" href="css/mobile-performance.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Nunito:wght@400;600&display=swap">
     </noscript>
 </head>
 <body>
@@ -415,10 +491,9 @@
                 </div>
                 <div class="col-lg-5">
                     <div class="hero-image">
-                        <picture>
-                            <source srcset="images/1-mobile.webp" media="(max-width: 767px)" type="image/webp" fetchpriority="high">
-                            <img src="images/1.webp" alt="Ubora Services Professional Cleaning Team in Kenya" class="img-fluid rounded" width="540" height="400" fetchpriority="high" decoding="async">
-                        </picture>
+                        <img src="images/1-mobile.webp" alt="Ubora Services Professional Cleaning Team in Kenya" 
+                             class="img-fluid rounded" width="540" height="400" 
+                             fetchpriority="high" decoding="async">
                     </div>
                 </div>
             </div>
@@ -434,48 +509,42 @@
             </div>
 
             <div class="row g-4">
-                <!-- Cleaning Services - Enhanced for SEO -->
+                <!-- Cleaning Services -->
                 <div class="col-md-6 col-lg-4">
                     <article class="service-card" id="cleaning-services">
                         <div class="service-icon">
                             <i class="fas fa-broom"></i>
                         </div>
-                        <h3>Professional Cleaning Services</h3>
-                        <p>Expert cleaning of commercial facilities, offices and homes with meticulous attention to detail and stringent quality assurance throughout Kisumu and Western Kenya.</p>
+                        <h3>Cleaning Services</h3>
+                        <p>Professional cleaning of facilities and homes with attention to detail and quality assurance.</p>
                         <div class="license-badge">
                             <i class="fas fa-check-circle"></i> Professional Staff
                         </div>
                     </article>
                 </div>
 
-                <!-- Fumigation Services - Enhanced for SEO -->
+                <!-- Fumigation Services -->
                 <div class="col-md-6 col-lg-4">
                     <article class="service-card" id="fumigation-services">
                         <div class="service-icon">
                             <i class="fas fa-bug"></i>
                         </div>
-                        <h3>Pest Control & Fumigation</h3>
-                        <p>Licensed fumigation services against all flying and crawling pests including cockroaches, bedbugs, termites, and rodents. Certified by the Pest Control Products Board of Kenya.</p>
+                        <h3>Fumigation</h3>
+                        <p>Licensed fumigation services against all flying and crawling pests by the Pest Control Products Board.</p>
                         <div class="license-badge">
                             <i class="fas fa-certificate"></i> PCPB Certified
                         </div>
                     </article>
                 </div>
 
-                <!-- Waste Collection - Significantly Enhanced for SEO -->
+                <!-- Waste Collection -->
                 <div class="col-md-6 col-lg-4">
                     <article class="service-card" id="waste-collection">
                         <div class="service-icon">
                             <i class="fas fa-trash"></i>
                         </div>
-                        <h3>Garbage & Waste Collection</h3>
-                        <p>NEMA-licensed collection and disposal of general garbage, household waste, hazardous waste, biomedical waste, and sewage across Kisumu and surrounding counties.</p>
-                        <ul class="waste-services-list">
-                            <li>Residential garbage collection</li>
-                            <li>Commercial waste management</li>
-                            <li>Scheduled weekly pickups</li>
-                            <li>Eco-friendly waste disposal</li>
-                        </ul>
+                        <h3>Waste Collection</h3>
+                        <p>NEMA-licensed collection of general garbage, hazardous waste, biomedical waste, and sewage.</p>
                         <div class="license-badge">
                             <i class="fas fa-certificate"></i> NEMA Licensed
                         </div>
@@ -584,25 +653,25 @@
     <section class="stats-counter py-5">
         <div class="container">
             <div class="row text-center">
-                <div class="col-6 col-md-3 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-6 col-md-3 mb-4 mb-md-0">
                     <div class="counter-item">
                         <div class="counter-number" data-count="11">0</div>
                         <div class="counter-text">Years Experience</div>
                     </div>
                 </div>
-                <div class="col-6 col-md-3 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-6 col-md-3 mb-4 mb-md-0">
                     <div class="counter-item">
                         <div class="counter-number" data-count="14">0</div>
                         <div class="counter-text">Counties Served</div>
                     </div>
                 </div>
-                <div class="col-6 col-md-3 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="300">
+                <div class="col-6 col-md-3 mb-4 mb-md-0">
                     <div class="counter-item">
                         <div class="counter-number" data-count="250">0</div>
                         <div class="counter-text">Projects Completed</div>
                     </div>
                 </div>
-                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="400">
+                <div class="col-6 col-md-3">
                     <div class="counter-item">
                         <div class="counter-number" data-count="98">0</div>
                         <div class="counter-text">Client Satisfaction %</div>
@@ -932,130 +1001,51 @@
     <!-- Load scripts with optimal strategy -->
     <script>
         /* Immediate script execution to detect browser capabilities */
-        // Mobile detection
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
-        
-        // Add mobile-specific class right away to enable mobile optimizations
-        if (isMobile) document.documentElement.classList.add('mobile-device');
-        
-        // Check for reduced motion preference
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            document.documentElement.classList.add('no-animation');
-        }
-        
-        // Low memory device detection
-        if (navigator.deviceMemory && navigator.deviceMemory < 4) {
-            document.documentElement.classList.add('low-end-device');
-        }
-
         // Check connection speed
         if (navigator.connection && (navigator.connection.saveData || ['slow-2g', '2g', '3g'].includes(navigator.connection.effectiveType))) {
             document.documentElement.classList.add('slow-connection');
         }
-        
-        // Optimize counters for better performance on mobile
-        if (isMobile) {
-            window.addEventListener('DOMContentLoaded', () => {
-                document.querySelectorAll('.counter-number').forEach(counter => {
-                    counter.textContent = counter.getAttribute('data-count');
-                });
-            });
-        }
     </script>
 
-    <!-- Bootstrap JS Bundle - defer loading -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <!-- Optimized script loading -->
+    <script src="js/script.min.js" defer></script>
+    <script src="js/counter-animation.js" defer></script>
     
-    <!-- Core script for basic functionality -->
-    <script src="js/script.js" defer></script>
-    
-    <!-- Load SEO enhancer script -->
-    <script src="js/seo-enhancer.js" defer></script>
-    
-    <!-- Load non-critical scripts only after page load -->
+    <!-- Load non-critical resources -->
     <script>
-        // After content is loaded, initialize late load resources
+        // Delay loading of non-critical resources
         window.addEventListener('load', function() {
-            // Delay further until interaction or idle time
-            const loadNonCritical = () => {
-                // Load font awesome icons with minimal impact
-                if (!document.querySelector('link[href*="font-awesome"]')) {
-                    const faLink = document.createElement('link');
-                    faLink.rel = 'stylesheet';
-                    faLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
-                    document.head.appendChild(faLink);
+            // Function to load FontAwesome
+            function loadFontAwesome() {
+                if (document.querySelector('.fa, .fab, .fas')) {
+                    const fontAwesome = document.createElement('link');
+                    fontAwesome.rel = 'stylesheet';
+                    fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+                    fontAwesome.media = 'print';
+                    fontAwesome.onload = function() { this.media = 'all'; };
+                    document.head.appendChild(fontAwesome);
                 }
-                
-                // Register service worker with delay
-                if ('serviceWorker' in navigator) {
-                    setTimeout(() => {
-                        navigator.serviceWorker.register('/sw.js')
-                            .then(registration => {
-                                console.log('Service Worker registered');
-                            })
-                            .catch(error => {
-                                console.error('Service Worker registration failed:', error);
-                            });
-                    }, 5000);
-                }
-            };
-            
-            // Use requestIdleCallback or setTimeout to defer non-critical work
-            if ('requestIdleCallback' in window) {
-                requestIdleCallback(loadNonCritical, { timeout: 5000 });
-            } else {
-                setTimeout(loadNonCritical, 3000);
             }
+            
+            // Function to load Bootstrap
+            function loadBootstrap() {
+                const bootstrapCSS = document.createElement('link');
+                bootstrapCSS.rel = 'stylesheet';
+                bootstrapCSS.href = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css';
+                bootstrapCSS.media = 'print';
+                bootstrapCSS.onload = function() { this.media = 'all'; };
+                document.head.appendChild(bootstrapCSS);
+                
+                const bootstrapJS = document.createElement('script');
+                bootstrapJS.src = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js';
+                bootstrapJS.defer = true;
+                document.body.appendChild(bootstrapJS);
+            }
+            
+            // Load resources with delay
+            setTimeout(loadFontAwesome, 1000);
+            setTimeout(loadBootstrap, 2000);
         });
-    </script>
-
-    <!-- Enhanced JSON-LD for Service Specifics -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "serviceType": "Waste Collection",
-      "provider": {
-        "@type": "LocalBusiness",
-        "name": "Ubora Services Limited",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Adala Otuko Road, Milimani area",
-          "addressLocality": "Kisumu",
-          "postalCode": "40100",
-          "addressCountry": "KE"
-        }
-      },
-      "areaServed": [
-        {
-          "@type": "City",
-          "name": "Kisumu"
-        },
-        {
-          "@type": "City",
-          "name": "Homabay"
-        },
-        {
-          "@type": "City",
-          "name": "Kisii"
-        },
-        {
-          "@type": "City",
-          "name": "Nyamira"
-        },
-        {
-          "@type": "City",
-          "name": "Kericho"
-        }
-      ],
-      "description": "NEMA-licensed garbage collection and waste management services including household waste, commercial waste, hazardous waste, and biomedical waste disposal.",
-      "offers": {
-        "@type": "Offer",
-        "description": "Professional garbage collection services with weekly scheduling",
-        "availability": "https://schema.org/InStock"
-      },
-      "termsOfService": "Weekly, bi-weekly, and monthly collection schedules available"
-    }
     </script>
 </body>
 </html>
