@@ -1,0 +1,69 @@
+/* Core critical CSS for mobile performance - essential render-blocking styles */
+
+:root {
+  --primary-color: #1B512D;
+  --secondary-color: #F2A900;
+  --accent-color: #008996;
+  --light-bg: #F9F7F3;
+  --dark-text: #333333;
+  --light-text: #ffffff;
+  --gray-bg: #e9ecef;
+  --light-green: #EAF2EC;
+  --medium-green: #2E7D41;
+  --gradient-primary: linear-gradient(135deg, #1B512D 0%, #2E7D41 100%);
+  --gradient-secondary: linear-gradient(135deg, #F2A900 0%, #F5BC36 100%);
+  --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Critical layout */
+body {
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--dark-text);
+  line-height: 1.7;
+  font-size: 16px;
+  background-color: var(--light-bg);
+  text-rendering: optimizeSpeed;
+  -webkit-overflow-scrolling: touch;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 767.98px) {
+  /* Reduce paint operations and memory use */
+  * {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  
+  /* Optimize sections with content-visibility */
+  section:not(#hero) {
+    content-visibility: auto;
+    contain-intrinsic-size: 400px;
+  }
+  
+  /* Disable animations for better performance */
+  .service-card, 
+  .why-us-card, 
+  .client-logo, 
+  .contact-info, 
+  .social-icon {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  /* Set layout size for hero image */
+  .hero-image {
+    aspect-ratio: 1.35;
+    height: auto;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  /* Optimize scrolling */
+  html, body {
+    scroll-behavior: auto;
+  }
+}

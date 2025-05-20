@@ -2,18 +2,282 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+    <meta name="description" content="Ubora Services Limited - Professional cleaning, fumigation, waste collection and general services in Western Kenya since 2014">
+    <meta name="theme-color" content="#1B512D">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="manifest" href="manifest.json">
     <title>Ubora Services Limited - Professional Services in Kenya</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <!-- Google Fonts - Updated with Montserrat and Nunito -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Nunito:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="css/style.css" rel="stylesheet">
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Preload LCP image for immediate display -->
+    <!-- Preload critical assets -->
+    <link rel="preload" as="image" href="images/1-mobile.webp" media="(max-width: 767px)" fetchpriority="high" type="image/webp">
+    <link rel="preload" as="image" href="images/1.webp" media="(min-width: 768px)" fetchpriority="high" type="image/webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    
+    <!-- Critical CSS inlined -->
+    <link rel="preload" href="css/core-critical.css" as="style" fetchpriority="high">
+    <link rel="stylesheet" href="css/core-critical.css">
+
+    <!-- Mobile-specific critical CSS -->
+    <link rel="stylesheet" href="css/mobile-performance.css" media="(max-width: 767px)" fetchpriority="high">
+    
+    <!-- Secondary CSS with optimized loading -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+          media="print" onload="this.media='all'" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+          media="print" onload="this.media='all'" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="css/performance.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="css/icon-fix.css" media="print" onload="this.media='all'">
+    
+    <noscript>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+      <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" href="css/performance.css">
+      <link rel="stylesheet" href="css/icon-fix.css">
+    </noscript>
+    <link rel="stylesheet" href="css/low-end-devices.css" media="(prefers-reduced-motion: reduce)" onload="this.media='all'">
+    <!-- Critical CSS inline for faster rendering -->
+    <style>
+      /* Critical CSS for above-the-fold content */
+      :root {
+        --primary-color: #1B512D;
+        --secondary-color: #F2A900;
+        --accent-color: #008996;
+        --light-bg: #F9F7F3;
+        --dark-text: #333333;
+        --light-text: #ffffff;
+        --gray-bg: #e9ecef;
+        --light-green: #EAF2EC;
+        --medium-green: #2E7D41;
+        --gradient-primary: linear-gradient(135deg, #1B512D 0%, #2E7D41 100%);
+        --gradient-secondary: linear-gradient(135deg, #F2A900 0%, #F5BC36 100%);
+        --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      /* Font loading optimization - reduce FOUT */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: local('Montserrat Bold'), local('Montserrat-Bold'), url(https://fonts.gstatic.com/s/montserrat/v15/JTURjIg1_i6t8kCHKm45_dJE3gnD_g.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      @font-face {
+        font-family: 'Nunito';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: local('Nunito Regular'), local('Nunito-Regular'), url(https://fonts.gstatic.com/s/nunito/v16/XRXV3I6Li01BKofINeaB.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      body {
+        font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: var(--dark-text);
+        line-height: 1.7;
+        font-size: 16px;
+        background-color: var(--light-bg);
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
+
+      /* Core layout and navbar - needed for initial render */
+      .navbar {
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        padding: 18px 0;
+        background-color: white !important;
+      }
+
+      .text-logo {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 800;
+        font-size: 2rem;
+        color: var(--primary-color);
+        letter-spacing: 1.5px;
+        margin: 0;
+        position: relative;
+      }
+
+      .text-logo span {
+        color: var(--secondary-color);
+        position: relative;
+      }
+
+      #hero {
+        background: linear-gradient(to right, rgba(27, 81, 45, 0.9), rgba(46, 125, 65, 0.8));
+        color: white;
+        padding: 160px 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      #hero h1 {
+        font-weight: 800;
+        font-size: 3.2rem;
+        margin-bottom: 20px;
+        line-height: 1.2;
+        position: relative;
+      }
+
+      /* Critical service component styles */
+      .service-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 60px;
+        width: 60px;
+        background: var(--light-green);
+        border-radius: 50%;
+        margin: 0 auto 16px auto;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      }
+
+      .service-icon i {
+        color: var(--primary-color);
+        font-size: 2.5rem;
+        display: block;
+        margin: 0;
+        z-index: 2;
+      }
+
+      /* Content-visibility for performance */
+      .section-services,
+      .section-why-us,
+      .section-clients,
+      .section-contact,
+      .section-quote {
+        content-visibility: auto;
+        contain-intrinsic-size: 500px;
+      }
+
+      /* Mobile optimizations */
+      @media (max-width: 767.98px) {
+        #hero {
+          padding: 80px 0;
+        }
+        
+        #hero h1 {
+          font-size: 2rem;
+        }
+        
+        .hero-buttons {
+          flex-direction: column;
+          width: 100%;
+        }
+        
+        .hero-buttons a {
+          width: 100%;
+          margin-right: 0 !important;
+          margin-bottom: 10px;
+        }
+        
+        /* Prevent text from being too small to read */
+        body {
+          font-size: 16px;
+        }
+
+        /* Reduce animation complexity on mobile */
+        .service-card, .why-us-card, .counter-item, .client-logo, .social-icon {
+          transform: none !important;
+          transition: none !important;
+          animation: none !important;
+        }
+
+        /* Optimize service icons for mobile */
+        .service-icon i {
+          font-size: 2rem;
+        }
+      }
+
+      /* Social links for mobile optimization */
+      .social-links .social-icon {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 40px;
+        height: 40px;
+        margin: 0 10px;
+        border-radius: 50%;
+        background: var(--light-green);
+        color: var(--primary-color);
+        transition: all 0.3s ease;
+      }
+
+      .social-links .social-icon i {
+        font-size: 1.5rem;
+        color: var(--primary-color) !important;
+        display: inline-block !important;
+      }
+      
+      /* Optimized WhatsApp button */
+      .whatsapp-float {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: #25D366;
+        color: white;
+        border-radius: 50%;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+      }
+      
+      .whatsapp-float i {
+        font-size: 2.2rem;
+      }
+
+      /* Remove transform animation for mobile */
+      @media (max-width: 767.98px) {
+        .whatsapp-float {
+          width: 50px;
+          height: 50px;
+          bottom: 20px;
+          right: 20px;
+        }
+        
+        .whatsapp-float i {
+          font-size: 1.8rem;
+        }
+      }
+
+      /* Set placeholder dimensions to prevent layout shift */
+      .hero-image {
+        aspect-ratio: 540/400;
+        width: 100%;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+    <!-- AOS Animation Library - load with defer -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
 </head>
 <body>
     <!-- Header with Navigation -->
@@ -30,7 +294,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">Home</a>
+                            <a class="nav-link active" href="#hero">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#services">Services</a>
@@ -77,7 +341,11 @@
                 </div>
                 <div class="col-lg-5">
                     <div class="hero-image">
-                        <img src="images/1.webp" alt="Ubora Services Professional Team" class="img-fluid rounded">
+                        <picture>
+                            <source srcset="images/1.webp" media="(min-width: 768px)" type="image/webp">
+                            <source srcset="images/1-mobile.webp" media="(max-width: 767px)" type="image/webp">
+                            <img src="images/1.webp" alt="Ubora Services Professional Team" class="img-fluid rounded" width="540" height="400" loading="eager" fetchpriority="high">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -172,7 +440,7 @@
                         <h3>Building Services</h3>
                         <p>Plumbing, masonry, painting, tiling, and office partitioning services.</p>
                         <div class="license-badge">
-                            <i class="fas fa-user-hard-hat"></i> Skilled Craftsmen
+                            <i class="fas fa-hard-hat"></i> Skilled Craftsmen
                         </div>
                     </div>
                 </div>
@@ -185,7 +453,11 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0">
-                    <img src="images/2.webp" alt="Ubora Services Team at Work" class="img-fluid rounded shadow">
+                    <picture>
+                        <source srcset="images/2.webp" media="(min-width: 768px)" type="image/webp">
+                        <source srcset="images/2-mobile.webp" media="(max-width: 767px)" type="image/webp">
+                        <img src="images/2.webp" alt="Ubora Services Team at Work" class="img-fluid rounded shadow" width="540" height="400" loading="lazy">
+                    </picture>
                 </div>
                 <div class="col-lg-6">
                     <div class="why-us-card">
@@ -291,53 +563,7 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-5 bg-light">
-        <div class="container">
-            <div class="section-header text-center mb-5">
-                <h2>What Our Clients Say</h2>
-                <p>Hear from our satisfied customers across Western Kenya</p>
-            </div>
-            <div class="row">
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="testimonial-card">
-                        <img src="images/3.webp" class="testimonial-avatar" alt="Avenue Healthcare Representative">
-                        <div class="testimonial-content">
-                            Ubora Services has consistently provided high-quality cleaning and fumigation at our medical facilities. Their professional approach and attention to hygiene standards make them invaluable partners.
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="testimonial-name">Jane Achieng</div>
-                            <div class="testimonial-role">Facility Manager, Avenue Healthcare</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="testimonial-card">
-                        <img src="images/3.webp" class="testimonial-avatar" alt="Crown Paints Representative">
-                        <div class="testimonial-content">
-                            We've trusted Ubora with our waste management needs for over 5 years. Their reliable service and NEMA compliance give us peace of mind that our waste is handled properly and legally.
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="testimonial-name">Peter Omondi</div>
-                            <div class="testimonial-role">Operations Director, Crown Paints</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="testimonial-card">
-                        <img src="images/3.webp" class="testimonial-avatar" alt="Maseno University Representative">
-                        <div class="testimonial-content">
-                            Ubora's team handled our campus-wide electrical and solar installation project with impressive expertise. The work was completed on time and their after-service support has been exceptional.
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="testimonial-name">Dr. Sarah Okoth</div>
-                            <div class="testimonial-role">Facilities Director, Maseno University</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Testimonials Section temporarily removed -->
 
     <!-- Our Clients Section -->
     <section id="clients" class="py-5">
@@ -430,18 +656,18 @@
                 </div>
                 <div class="col-md-6">
                     <!-- Contact Form -->
-                    <form id="contactForm" class="contact-form">
+                    <form id="contactForm" class="contact-form" autocomplete="on">
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required autocomplete="name">
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required autocomplete="email">
                         </div>
                         <div class="mb-3">
                             <label for="phone" class="form-label">Phone</label>
-                            <input type="tel" class="form-control" id="phone" placeholder="Your Phone Number" required>
+                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Your Phone Number" required autocomplete="tel">
                         </div>
                         <div class="mb-3">
                             <label for="service" class="form-label">Service Interested In</label>
@@ -470,7 +696,10 @@
                     <div class="map-container">
                         <h3 class="text-center mb-3">Find Us on the Map</h3>
                         <div class="google-map">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.6212658203247!2d34.754453!3d-0.0859948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128006b82c6a4a2b%3A0x6bf587d598c9e05a!2sMilimani%2C%20Kisumu%2C%20Kenya!5e0!3m2!1sen!2sus!4v1620287888372!5m2!1sen!2sus" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" title="Ubora Services Limited office location in Milimani, Kisumu"></iframe>
+                            <div class="map-placeholder" style="background-color: #eee; height: 400px; display: flex; align-items: center; justify-content: center; position: relative;">
+                                <span class="loading-text" style="position: absolute; color: #666;">Loading Map...</span>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.6212658203247!2d34.754453!3d-0.0859948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128006b82c6a4a2b%3A0x6bf587d598c9e05a!2sMilimani%2C%20Kisumu%2C%20Kenya!5e0!3m2!1sen!2sus!4v1620287888372!5m2!1sen!2sus" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" title="Ubora Services Limited office location in Milimani, Kisumu" onload="this.parentElement.querySelector('.loading-text').style.display='none';"></iframe>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -488,21 +717,21 @@
                             <h2>Request a Free Quote</h2>
                             <p>Get a customized quote for our professional services</p>
                         </div>
-                        <form id="quoteForm" class="quote-form">
+                        <form id="quoteForm" class="quote-form" autocomplete="on">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="quoteName" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="quoteName" placeholder="Your Name" required>
+                                    <input type="text" class="form-control" id="quoteName" name="quoteName" placeholder="Your Name" required autocomplete="name">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="quoteEmail" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="quoteEmail" placeholder="Your Email" required>
+                                    <input type="email" class="form-control" id="quoteEmail" name="quoteEmail" placeholder="Your Email" required autocomplete="email">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="quotePhone" class="form-label">Phone</label>
-                                    <input type="tel" class="form-control" id="quotePhone" placeholder="Your Phone Number" required>
+                                    <input type="tel" class="form-control" id="quotePhone" name="quotePhone" placeholder="Your Phone Number" required autocomplete="tel">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="quoteLocation" class="form-label">Location</label>
@@ -617,10 +846,92 @@
     </footer>
 
     <!-- Bootstrap JS Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- AOS Animation Library JS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!-- Custom JS -->
-    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    
+    <!-- Conditionally load AOS only for non-mobile devices -->
+    <script>
+      // Mobile detection
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+      
+      // Only load AOS on non-mobile devices
+      if (!isMobile) {
+        const aosScript = document.createElement('script');
+        aosScript.defer = true;
+        aosScript.src = 'https://unpkg.com/aos@2.3.1/dist/aos.js';
+        aosScript.onload = function() {
+          AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+          });
+        };
+        document.body.appendChild(aosScript);
+        
+        // Load AOS styles only for non-mobile
+        const aosStyles = document.createElement('link');
+        aosStyles.rel = 'stylesheet';
+        aosStyles.href = 'https://unpkg.com/aos@2.3.1/dist/aos.css';
+        document.head.appendChild(aosStyles);
+      }
+    </script>
+    
+    <!-- Load core scripts with defer -->
+    <script src="js/script.js" defer></script>
+    
+    <!-- Load non-critical scripts after page load -->
+    <script>
+      // Defer loading of non-critical scripts
+      window.addEventListener('load', function() {
+        // Load form handler after the page is fully loaded
+        const formScript = document.createElement('script');
+        formScript.src = 'js/form-handler.js';
+        document.body.appendChild(formScript);
+        
+        // Helper scripts loaded only if needed
+        const iconFixScript = document.createElement('script');
+        iconFixScript.src = 'js/icon-fix.js';
+        document.body.appendChild(iconFixScript);
+        
+        if (document.querySelector('.social-icon')) {
+          const socialScript = document.createElement('script');
+          socialScript.src = 'js/social-icon-fix.js';
+          document.body.appendChild(socialScript);
+        }
+        
+        // Check for low-end devices/slow connections
+        const checkConnection = () => {
+          // Check if the Network Information API is available
+          if (navigator.connection) {
+            const connection = navigator.connection;
+            if (connection.saveData || 
+                connection.effectiveType === 'slow-2g' || 
+                connection.effectiveType === '2g') {
+              // For slow connections, simplify the page
+              document.documentElement.classList.add('low-end-device');
+            }
+          }
+          
+          // Check for low memory/CPU devices
+          if (navigator.deviceMemory && navigator.deviceMemory < 4) {
+            document.documentElement.classList.add('low-end-device');
+          }
+        };
+        
+        // Run the connection check
+        checkConnection();
+        
+        // Register service worker for PWA support
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/sw.js')
+              .then(registration => {
+                  console.log('Service Worker registered');
+              })
+              .catch(error => {
+                  console.error('Service Worker registration failed:', error);
+              });
+        }
+      });
+    </script>
 </body>
 </html>

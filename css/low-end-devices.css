@@ -1,0 +1,123 @@
+/* Optimizations for low-end devices with limited memory/CPU or slow connections */
+
+.low-end-device {
+  /* Disable all animations and transitions for better performance */
+  * {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Simplify backgrounds */
+  #hero, .stats-counter, footer {
+    background: var(--primary-color) !important;
+  }
+  
+  /* Simplify box shadows and gradients */
+  .service-card, .why-us-card, .contact-info, .contact-form, .quote-card {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  /* Remove rounded corners for better rendering performance */
+  .rounded, .border-radius {
+    border-radius: 0 !important;
+  }
+  
+  /* Disable all hover effects */
+  *:hover {
+    transform: none !important;
+    box-shadow: inherit !important;
+  }
+  
+  /* Simplify county badges */
+  .county-badge {
+    background: var(--primary-color) !important;
+    box-shadow: none !important;
+  }
+  
+  /* Keep service icons visible */
+  .service-icon {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    width: 90px !important;
+    height: 90px !important;
+    margin: 0 auto 30px !important;
+    background: linear-gradient(135deg, var(--light-green) 0%, rgba(0, 137, 150, 0.1) 100%) !important;
+    border-radius: 50% !important;
+    color: var(--primary-color) !important;
+    font-size: 38px !important;
+  }
+  
+  /* Simplify section backgrounds */
+  .bg-light {
+    background-color: #f8f9fa !important;
+  }
+  
+  /* Further optimize images */
+  img {
+    image-rendering: auto !important;
+  }
+  
+  /* Disable parallax and complex background effects */
+  .hero-image, .service-card, .why-us-card {
+    transform: none !important;
+  }
+  
+  /* Simplify counter animations */
+  .counter-item .counter-number {
+    animation: none !important;
+  }
+  
+  /* Disable font awesome animations */
+  .fa, .fas, .far, .fab {
+    animation: none !important;
+  }
+  
+  /* Optimize rendering and painting */
+  .navbar,
+  .hero,
+  .service-card,
+  .why-us-card,
+  .contact-form {
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-font-smoothing: antialiased;
+  }
+
+  .btn,
+  .social-icon,
+  .nav-link {
+      touch-action: manipulation;
+  }
+
+  /* Add forced color schemes for better paint performance */
+  @media (prefers-color-scheme: light) {
+      :root {
+          color-scheme: light;
+      }
+  }
+
+  @media (prefers-color-scheme: dark) {
+      :root {
+          color-scheme: dark;
+      }
+  }
+
+  /* Paint containment for scrolling elements */
+  .section-services,
+  .section-why-us,
+  .section-clients {
+      contain: paint;
+  }
+
+  /* Memory optimization for overlays and modals */
+  .modal,
+  .overlay {
+      will-change: transform;
+      contain: layout style paint;
+  }
+}

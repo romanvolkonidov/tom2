@@ -1,0 +1,103 @@
+.mobile-device .service-card,
+.mobile-device .why-us-card,
+.mobile-device .counter-item,
+.mobile-device .client-logo,
+.mobile-device .contact-info,
+.mobile-device .contact-form,
+.mobile-device .quote-card,
+.mobile-device .hero-image {
+  /* Optimize rendering for mobile devices */
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08) !important;
+}
+
+.mobile-device .whatsapp-float {
+  /* Make WhatsApp button easier to tap on mobile */
+  width: 50px !important;
+  height: 50px !important;
+  right: 20px !important;
+  bottom: 20px !important;
+}
+
+.mobile-device .service-icon {
+  /* Make service icons visible but optimize performance */
+  animation: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.mobile-device .service-icon:after {
+  display: none !important;
+}
+
+.mobile-device .navbar {
+  transition: none !important;
+}
+
+/* Optimize text rendering on mobile */
+.mobile-device h1, 
+.mobile-device h2, 
+.mobile-device h3, 
+.mobile-device h4, 
+.mobile-device h5, 
+.mobile-device h6 {
+  text-rendering: optimizeSpeed !important;
+}
+
+/* Remove hover effects on mobile */
+.mobile-device a:hover,
+.mobile-device button:hover,
+.mobile-device .btn:hover,
+.mobile-device .service-card:hover,
+.mobile-device .client-logo:hover,
+.mobile-device .why-us-item:hover,
+.mobile-device .certification-badge:hover,
+.mobile-device .county-badge:hover,
+.mobile-device .license-badge:hover,
+.mobile-device .social-icon:hover,
+.mobile-device .footer-links a:hover {
+  transform: none !important;
+  box-shadow: inherit !important;
+  opacity: 1 !important;
+}
+
+/* Optimize images on mobile */
+.mobile-device img {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Improve form usability on mobile */
+.mobile-device input,
+.mobile-device select,
+.mobile-device textarea {
+  -webkit-appearance: none;
+  border-radius: 8px !important;
+}
+
+/* Enhance tap targets */
+.mobile-device .nav-link {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.mobile-device .footer-links a {
+  padding: 10px 0 !important;
+}
+
+/* Fix for iOS input zoom */
+@media screen and (max-width: 767px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}

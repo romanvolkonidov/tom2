@@ -1,0 +1,204 @@
+/* Mobile-specific optimizations for Ubora Services website */
+
+/* Reduce content width for small screens */
+@media (max-width: 767.98px) {
+  /* Reduce text sizes for better mobile performance */
+  h1 {
+    font-size: 2rem !important;
+    line-height: 1.2;
+  }
+  
+  h2 {
+    font-size: 1.6rem !important;
+  }
+  
+  h3 {
+    font-size: 1.3rem !important;
+  }
+  
+  p {
+    font-size: 0.95rem;
+  }
+  
+  /* Optimize hero section for mobile */
+  #hero {
+    padding: 60px 0 !important;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .hero-buttons a {
+    width: 100%;
+    margin-right: 0 !important;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  /* Optimize form elements for touch */
+  input, select, textarea, button {
+    font-size: 16px !important; /* Prevents iOS zoom on focus */
+    padding: 10px 15px !important;
+  }
+  
+  /* Improve touch targets */
+  .nav-link, 
+  .btn,
+  .whatsapp-float a,
+  .social-icon {
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Optimize animations for mobile */
+  .fade-in {
+    transform: translateY(10px);
+  }
+  
+  /* Fix navbar on mobile */
+  .navbar-collapse {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+  
+  .certification-badge {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    margin-bottom: 10px;
+  }
+  
+  /* Optimize counter section for mobile */
+  .counter-item .counter-number {
+    font-size: 2rem !important;
+  }
+  
+  .counter-item .counter-text {
+    font-size: 0.8rem !important;
+  }
+
+  /* Optimize spacing on mobile */
+  .section-header {
+    margin-bottom: 2rem !important;
+  }
+
+  .py-5 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  /* Better loading performance for mobile */
+  .service-card, 
+  .why-us-card,
+  .contact-info,
+  .contact-form,
+  .quote-card,
+  .client-logo {
+    transform: none !important;
+    transition: opacity 0.3s ease !important;
+  }
+
+  /* Less resource-intensive animations on mobile */
+  .service-card:hover,
+  .why-us-item:hover,
+  .client-logo:hover {
+    transform: none !important;
+  }
+
+  /* Optimize footer for mobile */
+  footer {
+    padding-top: 2rem !important;
+  }
+
+  footer h5 {
+    margin-bottom: 15px !important;
+  }
+  
+  /* Optimize map container */
+  .map-container iframe {
+    height: 300px !important;
+  }
+  
+  /* Improve tap targets on mobile */
+  .footer-links a {
+    padding: 8px 0;
+    display: block;
+  }
+  
+  /* Reduce motion for better performance */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  
+  /* Optimize county badges display */
+  .counties-list {
+    gap: 8px;
+  }
+  
+  .county-badge {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+  }
+  
+  /* Reduce image animations on mobile */
+  .hero-image {
+    transform: none !important;
+  }
+  
+  .hero-image:hover {
+    transform: none !important;
+  }
+  
+  /* Optimize navbar for mobile */
+  .navbar {
+    padding: 10px 0 !important;
+  }
+  
+  .quote-btn {
+    margin-top: 10px;
+    width: 100%;
+  }
+}
+
+/* Additional optimizations for very small screens */
+@media (max-width: 575.98px) {
+  .text-logo {
+    font-size: 1.5rem !important;
+  }
+
+  .text-logo small {
+    font-size: 0.7rem !important;
+  }
+
+  #hero h1 {
+    font-size: 1.8rem !important;
+  }
+
+  #hero .lead {
+    font-size: 1rem !important;
+  }
+
+  .quote-card,
+  .contact-form,
+  .contact-info {
+    padding: 20px !important;
+  }
+
+  .whatsapp-float {
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 24px !important;
+  }
+}

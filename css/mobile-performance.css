@@ -1,0 +1,215 @@
+/* Mobile-specific performance optimizations */
+@media (max-width: 767.98px) {
+  /* Force hardware acceleration and reduce memory usage */
+  html, body {
+    -webkit-overflow-scrolling: touch;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+    scroll-behavior: auto !important;
+  }
+
+  /* Use passive listeners for touch events */
+  * {
+    touch-action: manipulation;
+  }
+
+  /* Optimize paint and layout rendering */
+  section, 
+  .service-card,
+  .why-us-card,
+  .client-logo,
+  .counter-item,
+  .contact-info,
+  .quote-card {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 500px;
+    contain: content;
+    transform: translateZ(0);
+    will-change: contents;
+  }
+
+  /* Remove all animations and transitions */
+  * {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+
+  /* Optimize paint operations */
+  * {
+    backface-visibility: hidden;
+    perspective: 1000;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Disable hover effects on touch devices */
+  @media (hover: none) {
+    a, button, .btn,
+    .service-card, 
+    .why-us-card,
+    .client-logo,
+    .county-badge,
+    .social-icon,
+    .footer-links a {
+      transform: none !important;
+      transition: none !important;
+      box-shadow: none !important;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn:active,
+    a:active {
+      opacity: 0.8;
+    }
+  }
+
+  /* Optimize image loading and display */
+  img {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 300px;
+    contain: strict;
+    display: block;
+  }
+
+  picture {
+    content-visibility: auto;
+    contain: size layout style paint;
+    display: block;
+  }
+
+  /* Optimize image placeholders */
+  .img-placeholder {
+    background-color: var(--light-bg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Lazy sections optimization */
+  section:not(#hero):not(.visible) {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 500px;
+    contain: strict;
+  }
+
+  /* Optimize form rendering */
+  form, input, select, textarea {
+    -webkit-appearance: none;
+    appearance: none;
+    will-change: auto;
+    content-visibility: auto;
+  }
+
+  /* Simplify complex layouts */
+  .service-card, 
+  .why-us-card,
+  .counter-item,
+  .contact-info,
+  .contact-form,
+  .quote-card {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+    contain: layout paint style;
+  }
+
+  /* Optimize navbar */
+  .navbar {
+    position: sticky;
+    top: 0;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: rgba(255, 255, 255, 0.98);
+    contain: layout paint;
+  }
+
+  /* Optimize gradients and backgrounds */
+  .gradient-bg {
+    background: var(--primary-color) !important;
+  }
+
+  #hero:before,
+  .gradient-overlay {
+    display: none !important;
+  }
+
+  /* Prevent layout shifts */
+  .btn {
+    height: 44px;
+    padding: 0 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    contain: layout paint;
+  }
+
+  /* Remove parallax effects */
+  .parallax,
+  .parallax-bg,
+  [data-aos] {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    opacity: 1 !important;
+    will-change: auto;
+  }
+}
+
+/* Force hardware acceleration for smoother scrolling */
+body {
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  overscroll-behavior-y: contain;
+}
+
+/* Performance optimizations for text rendering */
+* {
+  text-rendering: optimizeSpeed;
+}
+
+/* Optimize font display */
+h1, h2, h3, h4, h5, h6 {
+  font-display: swap;
+}
+
+/* Content visibility optimizations */
+.footer,
+.contact-section,
+.testimonials,
+.services-list {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+  contain: layout style paint;
+}
+
+/* Reduce paint operations for fixed elements */
+.fixed-element,
+.sticky-element {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000;
+  will-change: transform;
+}
+
+/* Memory optimizations */
+video,
+canvas,
+iframe {
+  content-visibility: auto;
+  contain: strict;
+  will-change: transform;
+}
+
+/* Optimize counters */
+.counter-number {
+  will-change: contents;
+}
+
+/* Set specific height to prevent layout shift */
+.hero-image picture,
+.hero-image img {
+  height: auto;
+  aspect-ratio: 1.35;
+}

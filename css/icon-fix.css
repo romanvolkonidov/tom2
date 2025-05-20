@@ -1,0 +1,103 @@
+/* Social icons fix */
+
+.social-icon {
+  width: 45px;
+  height: 45px;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: var(--primary-color);
+  color: var(--light-text) !important;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 10px rgba(27, 81, 45, 0.2);
+  text-decoration: none;
+  margin: 0 8px;
+}
+
+.social-icon i {
+  display: inline-block !important;
+  width: auto !important;
+  height: auto !important;
+  line-height: 1 !important;
+  vertical-align: middle !important;
+  color: white !important;
+  font-style: normal !important;
+}
+
+.social-icon i::before {
+  display: block !important;
+  line-height: 1 !important;
+}
+
+/* Brand-specific colors on hover */
+.social-icon[href*="facebook"]:hover {
+  background: #1877f2;
+}
+
+.social-icon[href*="instagram"]:hover {
+  background: #e4405f;
+}
+
+.social-icon[href*="whatsapp"]:hover {
+  background: #25D366;
+}
+
+/* Footer social icons */
+.social-icons a {
+  color: white !important;
+  font-size: 20px;
+  margin-left: 20px;
+  transition: all 0.3s;
+  opacity: 0.8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icons a i {
+  display: inline-block !important;
+  color: white !important;
+  font-style: normal !important;
+}
+
+.social-icons a:hover {
+  color: var(--secondary-color) !important;
+  opacity: 1;
+  transform: translateY(-5px);
+}
+
+/* WhatsApp float fix */
+.whatsapp-float {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #25D366 !important;
+  padding: 15px;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.whatsapp-float a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.whatsapp-float i {
+  color: white !important;
+  font-size: 2.5rem !important;
+  display: inline-block !important;
+  font-style: normal !important;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}

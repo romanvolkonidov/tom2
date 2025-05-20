@@ -1,0 +1,21 @@
+{
+  "name": "Ubora Services Limited",
+  "short_name": "Ubora Services",
+  "description": "Professional services in Kenya - cleaning, fumigation, waste collection and more",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F9F7F3",
+  "theme_color": "#1B512D",
+  "icons": [
+    {
+      "src": "images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
