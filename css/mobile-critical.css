@@ -1,0 +1,100 @@
+/* Mobile-specific critical CSS */
+@media (max-width: 767.98px) {
+  /* Base styles for mobile */
+  body {
+    font-size: 15px;
+  }
+
+  /* Typography for mobile */
+  h1 {
+    font-size: 2rem !important;
+    line-height: 1.3;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  h3 {
+    font-size: 1.3rem !important;
+  }
+  
+  p {
+    margin-bottom: 0.8rem;
+  }
+
+  /* Layout optimizations */
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  /* Reduce padding for sections */
+  section {
+    padding: 40px 0 !important;
+  }
+  
+  /* Hero section mobile optimization */
+  #hero {
+    padding: 80px 0 50px !important;
+    text-align: center;
+  }
+  
+  #hero .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  #hero .hero-buttons a {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  #hero .hero-buttons a.me-3 {
+    margin-right: 0 !important;
+  }
+  
+  /* Hero image optimizations */
+  .hero-image {
+    margin-top: 20px;
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .hero-image img {
+    border-radius: 8px;
+    max-height: 250px;
+    object-fit: cover;
+    object-position: center;
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  
+  /* Counter component optimization */
+  .counter-number {
+    font-size: 2rem !important;
+  }
+  
+  .counter-text {
+    font-size: 0.9rem;
+  }
+  
+  /* Navbar mobile optimization */
+  .text-logo {
+    font-size: 1.5rem !important;
+  }
+  
+  .navbar {
+    padding: 10px 0 !important;
+  }
+  
+  /* Fixed position elements optimization */
+  .whatsapp-float {
+    bottom: 15px !important;
+    right: 15px !important;
+    padding: 12px !important;
+    will-change: transform;
+    transform: translateZ(0);
+  }
+}
