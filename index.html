@@ -30,6 +30,10 @@
     
     <title>Professional Cleaning, Fumigation & Garbage Collection Services in Western Kenya</title>
     
+    <!-- Preload hero image - most important for fast LCP -->
+    <link rel="preload" href="images/1-mobile.webp" as="image" type="image/webp" media="(max-width: 767px)" fetchpriority="high">
+    <link rel="preload" href="images/1.webp" as="image" type="image/webp" media="(min-width: 768px)" fetchpriority="high">
+    
     <!-- Preload critical fonts -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Nunito:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
@@ -264,11 +268,11 @@
                 </div>
                 <div class="col-lg-5">
                     <div class="hero-image">
-                        <!-- Image with explicit dimensions to prevent layout shift -->
+                        <!-- Preloaded hero image with explicit dimensions to prevent layout shift -->
                         <picture>
                             <source srcset="images/1.webp" media="(min-width: 768px)" type="image/webp">
                             <source srcset="images/1-mobile.webp" media="(max-width: 767px)" type="image/webp">
-                            <img src="images/1.webp" alt="Ubora Services Professional Team" class="img-fluid rounded" width="540" height="400" loading="eager" fetchpriority="high" decoding="async" style="aspect-ratio: 540/400; width: 100%; height: auto;">
+                            <img src="images/1-mobile.webp" alt="Ubora Services Professional Team" class="img-fluid rounded" width="540" height="400" loading="eager" fetchpriority="high" decoding="async" style="aspect-ratio: 540/400; width: 100%; height: auto;">
                         </picture>
                     </div>
                 </div>
@@ -822,6 +826,49 @@
     <script src="js/script.min.js" defer></script>
     <script src="js/form-handler.js" defer></script>
     
+    <!-- Image optimizer script - Reduces image size for performance -->
+    <script>
+    // WebP and Image Optimization - Inline for faster execution
+    (function() {
+        'use strict';
+        
+        // Check WebP support
+        function supportsWebP() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 1;
+            canvas.height = 1;
+            return canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+        }
+        
+        // Connection-aware image loading
+        function getConnectionSpeed() {
+            if ('connection' in navigator) {
+                const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+                if (connection) {
+                    return connection.effectiveType ? connection.effectiveType : 
+                           (connection.downlink ? connection.downlink > 1.5 ? 'fast' : 'slow' : 'unknown');
+                }
+            }
+            return 'unknown';
+        }
+        
+        // Optimize images
+        const images = document.querySelectorAll('img:not([data-optimized="true"])');
+        const isWebPSupported = supportsWebP();
+        const connectionSpeed = getConnectionSpeed();
+        
+        images.forEach(img => {
+            img.setAttribute('data-optimized', 'true');
+            // Add error handling
+            img.onerror = function() {
+                if (this.src.includes('-mobile.webp')) {
+                    this.src = this.src.replace('-mobile.webp', '.webp');
+                }
+            };
+        });
+    })();
+    </script>
+
     <!-- Simple Mobile Optimizations for cPanel -->
     <script>
       // Simple and compatible mobile optimizations

@@ -36,6 +36,7 @@
 # Cache control
 <IfModule mod_expires.c>
     ExpiresActive on
+    ExpiresDefault "access plus 1 month"
     ExpiresByType text/css "access plus 1 year"
     ExpiresByType application/javascript "access plus 1 year"
     ExpiresByType image/png "access plus 1 year"
@@ -44,4 +45,34 @@
     ExpiresByType image/webp "access plus 1 year"
     ExpiresByType image/gif "access plus 1 year"
     ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType font/ttf "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+# Add proper content types for enhanced compatibility
+<IfModule mod_mime.c>
+    # WebP mime type
+    AddType image/webp .webp
+    
+    # Font MIME types
+    AddType font/ttf .ttf
+    AddType font/woff .woff
+    AddType font/woff2 .woff2
+    
+    # JavaScript
+    AddType application/javascript .js
+    
+    # CSS
+    AddType text/css .css
+    
+    # HTML
+    AddType text/html .html .htm
+</IfModule>
+
+# Optimize images by setting content-length
+<IfModule mod_headers.c>
+    <FilesMatch "\.(jpg|jpeg|png|webp|gif)$">
+        Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
 </IfModule>
