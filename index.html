@@ -28,214 +28,62 @@
     <meta name="twitter:description" content="NEMA licensed services in Western Kenya. Cleaning, fumigation, waste collection & more in 14 counties.">
     <meta name="twitter:image" content="https://www.uboraservices.co.ke/images/1.webp">
     
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="https://unpkg.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="preconnect" href="https://unpkg.com" crossorigin>
-    <link rel="preload" href="css/mobile.css" as="style">
-    <link rel="manifest" href="manifest.json">
-    <title>Cleaning Services Kisumu | Fumigation Homabay | Garbage Collection Western Kenya | Ubora Services</title>
+    <title>Professional Cleaning, Fumigation & Garbage Collection Services in Western Kenya</title>
     
-    <!-- Critical CSS inlined for faster rendering -->
-    <style>
-        :root{--primary-color:#1B512D;--secondary-color:#F2A900;--accent-color:#008996;--light-bg:#F9F7F3;--dark-text:#333;--light-text:#fff;--gray-bg:#e9ecef;--box-shadow:0 10px 30px rgba(0,0,0,.08)}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:'Nunito','Open Sans',sans-serif;color:var(--dark-text);line-height:1.7;font-size:16px;background-color:var(--light-bg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}h1,h2,h3,h4,h5,h6{font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:.5px}img{max-width:100%;height:auto;display:block}.navbar{transition:all .3s ease;will-change:transform}.hero{min-height:100vh;display:flex;align-items:center;background:linear-gradient(135deg,var(--primary-color) 0%,#2E7D41 100%)}.btn{transition:all .3s ease;transform:translateZ(0)}.btn:hover{transform:translateY(-2px)}.service-card,.why-us-card{transition:transform .3s ease,box-shadow .3s ease;will-change:transform}.counter-number{font-size:2.5rem;font-weight:700;color:var(--primary-color)}.stats-counter{background:var(--light-bg);padding:3rem 0}.fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}.fade-in.visible{opacity:1;transform:translateY(0)}.loading{opacity:.7;pointer-events:none}@media (max-width:768px){h1{font-size:2.2rem}.hero{min-height:80vh}.navbar-brand img{height:35px}}
-    </style>
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Nunito:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
     
-    <!-- Preload LCP image -->
-    <link rel="preload" as="image" href="images/1.webp" fetchpriority="high">
-    
-    <!-- Image optimization script - critical for performance -->
-    <script>
-        (function(){function e(){const e=document.createElement("canvas");return e.width=1,e.height=1,0===e.toDataURL("image/webp").indexOf("data:image/webp")}function t(){if("connection"in navigator){const e=navigator.connection||navigator.mozConnection||navigator.webkitConnection;if(e)return e.effectiveType?e.effectiveType:e.downlink?e.downlink>1.5?"fast":"slow":"unknown"}return"unknown"}function n(){const n=document.querySelectorAll("img[data-src], img[src]"),r=e(),i=t(),o="slow"===i||"2g"===i||"slow-2g"===i;n.forEach(e=>{if(e.dataset.optimized)return;let t=e.dataset.src||e.src;r&&(t.includes(".jpg")||t.includes(".jpeg")||t.includes(".png"))&&(t=t.replace(/\.(jpg|jpeg|png)$/i,".webp")),o&&(window.innerWidth<=768?t=t.replace(/(\.[^.]+)$/,"-mobile$1"):window.innerWidth<=1200&&(t=t.replace(/(\.[^.]+)$/,"-tablet$1"))),e.dataset.src?e.dataset.src=t:e.src=t,e.decoding="async",e.dataset.optimized="true",e.onerror=function(){this.src.includes(".webp")&&(this.src=this.src.replace(".webp",".jpg"))}})}function r(e){e.forEach(function(e){e.addedNodes.forEach(function(e){if(1===e.nodeType)if("IMG"===e.tagName)n();else if(e.querySelectorAll){const t=e.querySelectorAll("img");t.length>0&&n()}})})}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",n):n();const i=new MutationObserver(r);i.observe(document.body,{childList:!0,subtree:!0})})();
-    </script>
-    
-    <!-- Preload and defer non-critical resources -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Nunito:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" fetchpriority="high">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
-    
-    <!-- Bootstrap CSS - defer to avoid render blocking -->
+    <!-- Preload critical styles -->
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"></noscript>
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"></noscript>
     
-    <!-- Font Awesome CSS - defer loading -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"></noscript>
-    
-    <!-- Custom CSS - use minified version -->
-    <link rel="preload" href="css/style.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="css/style.min.css" rel="stylesheet"></noscript>
-    
-    <link rel="preload" href="css/mobile-performance.css" as="style" onload="this.onload=null;this.rel='stylesheet'" media="(max-width: 767px)">
-    <noscript><link href="css/mobile-performance.css" rel="stylesheet" media="(max-width: 767px)"></noscript>
     <!-- Critical CSS inline for faster rendering -->
     <style>
-      /* Critical CSS for above-the-fold content */
-      :root {
-        --primary-color: #1B512D;
-        --secondary-color: #F2A900;
-        --accent-color: #008996;
-        --light-bg: #F9F7F3;
-        --dark-text: #333333;
-        --light-text: #ffffff;
-        --gray-bg: #e9ecef;
-        --light-green: #EAF2EC;
-        --medium-green: #2E7D41;
-        --gradient-primary: linear-gradient(135deg, #1B512D 0%, #2E7D41 100%);
-        --gradient-secondary: linear-gradient(135deg, #F2A900 0%, #F5BC36 100%);
-        --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-      
-      body {
-        font-family: 'Nunito', sans-serif;
-        color: var(--dark-text);
-        line-height: 1.7;
-        font-size: 16px;
-        background-color: var(--light-bg);
-        margin: 0;
-        padding: 0;
-      }
-
-      h1, h2, h3, h4, h5, h6 {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-      }
-
-      .navbar {
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-        padding: 18px 0;
-        background-color: white !important;
-      }
-
-      .text-logo {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 800;
-        font-size: 2rem;
-        color: var(--primary-color);
-        letter-spacing: 1.5px;
-        margin: 0;
-        position: relative;
-      }
-
-      .text-logo span {
-        color: var(--secondary-color);
-        position: relative;
-      }
-
-      #hero {
-        background: linear-gradient(to right, rgba(27, 81, 45, 0.9), rgba(46, 125, 65, 0.8));
-        color: white;
-        padding: 160px 0;
-        position: relative;
-        overflow: hidden;
-      }
-
-      #hero h1 {
-        font-weight: 800;
-        font-size: 3.2rem;
-        margin-bottom: 20px;
-        line-height: 1.2;
-        position: relative;
-      }
-
-      /* Mobile optimizations */
-      @media (max-width: 767.98px) {
-        #hero {
-          padding: 60px 0;
-        }
-        
-        #hero h1 {
-          font-size: 2rem;
-        }
-        
-        .hero-buttons {
-          flex-direction: column;
-          width: 100%;
-        }
-        
-        .hero-buttons a {
-          width: 100%;
-          margin-right: 0 !important;
-          margin-bottom: 10px;
-        }
-        
-        body {
-          font-size: 16px;
-        }
-        
-        .text-logo {
-          font-size: 1.5rem !important;
-        }
-        
-        .navbar {
-          padding: 10px 0 !important;
-        }
-      }
-
-      .service-icon i {
-        color: var(--primary-color);
-        font-size: 2.5rem;
-        display: block;
-        margin: 0;
-        z-index: 2;
-      }
-
-      .service-icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 60px;
-        width: 60px;
-        background: var(--light-green);
-        border-radius: 50%;
-        margin: 0 auto 16px auto;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      }
-
-      .btn {
-        border-radius: 8px;
-        padding: 12px 24px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-      }
-
-      .btn-secondary {
-        background: var(--secondary-color);
-        border: none;
-        color: var(--dark-text);
-      }
-
-      .btn-success {
-        background: #25D366;
-        border: none;
-      }
-
-      /* Optimize for mobile performance */
-      @media (max-width: 767.98px) {
-        .service-icon i {
-          font-size: 2rem;
-        }
-        
-        * {
-          -webkit-font-smoothing: antialiased;
-          text-rendering: optimizeSpeed;
-        }
-        
-        .service-card,
-        .why-us-card,
-        .counter-item {
-          transform: none !important;
-          transition: opacity 0.2s ease !important;
-          animation: none !important;
-        }
-      }
+    /* Critical Performance CSS - Inline - cPanel optimized */
+    :root{--primary-color:#1B512D;--secondary-color:#F2A900;--accent-color:#008996;--light-bg:#F9F7F3;--dark-text:#333;--light-text:#fff;--gray-bg:#e9ecef;--light-green:#EAF2EC;--medium-green:#2E7D41;--gradient-primary:linear-gradient(135deg,#1B512D 0%,#2E7D41 100%);--box-shadow:0 10px 30px rgba(0,0,0,.08)}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:'Nunito',sans-serif;color:var(--dark-text);line-height:1.7;font-size:16px;background-color:var(--light-bg);margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:.5px}img{max-width:100%;height:auto;display:block}.navbar{box-shadow:0 5px 20px rgba(0,0,0,0.05);padding:18px 0;background-color:white!important}.text-logo{font-family:'Montserrat',sans-serif;font-weight:800;font-size:2rem;color:var(--primary-color);letter-spacing:1.5px;margin:0;position:relative}.text-logo span{color:var(--secondary-color);position:relative}.text-logo small{display:block;font-size:.7rem;letter-spacing:2px;line-height:1;color:#555;font-weight:500;margin-top:-5px}#hero{background:linear-gradient(to right,rgba(27,81,45,0.9),rgba(46,125,65,0.8));color:white;padding:160px 0;position:relative;overflow:hidden}#hero h1{font-weight:800;font-size:3.2rem;margin-bottom:20px;line-height:1.2;position:relative}.hero-image{display:block;width:100%;height:auto}.counter-number{font-size:4rem;font-weight:800;font-family:'Montserrat',sans-serif;margin-bottom:10px;text-shadow:2px 2px 4px rgba(0,0,0,0.3);color:white}.counter-item{text-align:center;color:white;position:relative;z-index:1}.counter-text{font-size:1.2rem;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;color:rgba(255,255,255,0.95);text-shadow:1px 1px 3px rgba(0,0,0,0.2)}.stats-counter{padding:60px 0;background:linear-gradient(135deg,rgba(27,81,45,0.92) 0%,rgba(0,137,150,0.92) 100%),url('../images/pattern-bg.jpg');background-size:cover;background-position:center;position:relative;box-shadow:inset 0 0 100px rgba(0,0,0,0.2)}@media (max-width:767.98px){#hero{padding:60px 0}#hero h1{font-size:2rem}.hero-buttons{flex-direction:column;width:100%}.hero-buttons a{width:100%;margin-right:0!important;margin-bottom:10px}body{font-size:16px}.counter-number{font-size:3rem}.counter-text{font-size:1rem}}
     </style>
+    
+    <!-- Font Awesome - deferred loading -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    
+    <!-- Custom CSS - load after content rendering -->
+    <link href="css/style.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="css/style.min.css" rel="stylesheet"></noscript>
+    
+    <!-- Mobile CSS -->
+    <link href="css/mobile.css" rel="stylesheet" media="(max-width: 767px)" onload="this.media='(max-width: 767px)'">
+    
+    <!-- Pre-image optimizations for faster loading -->
+    <script>
+        // Simple image optimization script
+        document.addEventListener('DOMContentLoaded', function() {
+            const isMobile = window.innerWidth <= 767;
+            const images = document.querySelectorAll('img[data-src]');
+            
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = isMobile && img.dataset.mobileSrc ? img.dataset.mobileSrc : img.dataset.src;
+                            img.onload = () => img.classList.add('loaded');
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+                
+                images.forEach(img => imageObserver.observe(img));
+            } else {
+                // Fallback for older browsers
+                images.forEach(img => {
+                    img.src = isMobile && img.dataset.mobileSrc ? img.dataset.mobileSrc : img.dataset.src;
+                });
+            }
+        });
+    </script>
+    
     <!-- AOS Animation Library - load with defer -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
     
@@ -416,10 +264,11 @@
                 </div>
                 <div class="col-lg-5">
                     <div class="hero-image">
+                        <!-- Image with explicit dimensions to prevent layout shift -->
                         <picture>
                             <source srcset="images/1.webp" media="(min-width: 768px)" type="image/webp">
                             <source srcset="images/1-mobile.webp" media="(max-width: 767px)" type="image/webp">
-                            <img src="images/1.webp" alt="Ubora Services Professional Team" class="img-fluid rounded" width="540" height="400" loading="eager" fetchpriority="high" decoding="async">
+                            <img src="images/1.webp" alt="Ubora Services Professional Team" class="img-fluid rounded" width="540" height="400" loading="eager" fetchpriority="high" decoding="async" style="aspect-ratio: 540/400; width: 100%; height: auto;">
                         </picture>
                     </div>
                 </div>
@@ -528,10 +377,11 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0">
+                    <!-- Image with explicit dimensions and aspect ratio to prevent layout shift -->
                     <picture>
                         <source srcset="images/2.webp" media="(min-width: 768px)" type="image/webp">
                         <source srcset="images/2-mobile.webp" media="(max-width: 767px)" type="image/webp">
-                        <img src="images/2.webp" alt="Ubora Services Team at Work" class="img-fluid rounded shadow" width="540" height="400" loading="lazy" decoding="async">
+                        <img src="images/2.webp" alt="Ubora Services Team at Work" class="img-fluid rounded shadow" width="540" height="400" loading="lazy" decoding="async" style="aspect-ratio: 540/400; width: 100%; height: auto;">
                     </picture>
                 </div>
                 <div class="col-lg-6">
@@ -580,96 +430,77 @@
     <section class="stats-counter py-5">
         <div class="container">
             <div class="row text-center">
-                <div class="col-6 col-md-3 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-6 col-md-3 mb-4 mb-md-0">
                     <div class="counter-item">
-                        <div class="counter-number" data-count="11">0</div>
+                        <!-- Pre-display numbers to prevent layout shifts -->
+                        <div class="counter-number" data-count="11">11</div>
                         <div class="counter-text">Years Experience</div>
                     </div>
                 </div>
-                <div class="col-6 col-md-3 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-6 col-md-3 mb-4 mb-md-0">
                     <div class="counter-item">
-                        <div class="counter-number" data-count="14">0</div>
+                        <div class="counter-number" data-count="14">14</div>
                         <div class="counter-text">Counties Served</div>
                     </div>
                 </div>
-                <div class="col-6 col-md-3 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="300">
+                <div class="col-6 col-md-3 mb-4 mb-md-0">
                     <div class="counter-item">
-                        <div class="counter-number" data-count="250">0</div>
+                        <div class="counter-number" data-count="250">250</div>
                         <div class="counter-text">Projects Completed</div>
                     </div>
                 </div>
-                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="400">
+                <div class="col-6 col-md-3">
                     <div class="counter-item">
-                        <div class="counter-number" data-count="98">0</div>
+                        <div class="counter-number" data-count="98">98</div>
                         <div class="counter-text">Client Satisfaction %</div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Inline counter initialization script for guaranteed execution -->
+        <!-- Simplified counter animation script for cPanel compatibility -->
         <script>
-            // Immediately invoked function to avoid polluting global scope
+            // Immediately invoked function for counter animation with better performance
             (function() {
-                let countersAnimated = false;
-                
-                function animateCounters() {
-                    if (countersAnimated) return; // Prevent multiple animations
-                    
-                    const counters = document.querySelectorAll('.counter-number');
-                    counters.forEach(counter => {
-                        const targetValue = parseInt(counter.getAttribute('data-count'));
-                        let currentValue = 0;
-                        const duration = 1500; // Slightly faster animation for better UX
-                        const frameRate = 1000/60; // 60fps
-                        const totalSteps = duration / frameRate;
-                        const increment = targetValue / totalSteps;
-                        
-                        const updateCounter = () => {
-                            currentValue += increment;
-                            if (currentValue < targetValue) {
-                                counter.textContent = Math.ceil(currentValue);
-                                requestAnimationFrame(updateCounter);
-                            } else {
-                                counter.textContent = targetValue; // Ensure final value is exact
-                            }
-                        };
-                        
-                        requestAnimationFrame(updateCounter);
-                    });
-                    
-                    countersAnimated = true;
-                }
-                
-                // Use performance-optimized IntersectionObserver
-                function setupObserver() {
+                // Display the numbers immediately to avoid layout shifts
+                // Then apply a simple CSS animation for visual interest (no JS animation)
+                document.addEventListener('DOMContentLoaded', function() {
                     const counterSection = document.querySelector('.stats-counter');
                     if (!counterSection) return;
                     
-                    const options = { 
-                        threshold: 0.15, // Trigger when 15% visible
-                        rootMargin: '0px 0px -10% 0px' // Slightly above viewport bottom
+                    const options = {
+                        threshold: 0.15,
+                        rootMargin: '0px 0px -10% 0px'
                     };
                     
                     const observer = new IntersectionObserver((entries) => {
                         entries.forEach(entry => {
                             if (entry.isIntersecting) {
-                                animateCounters();
-                                observer.disconnect(); // Stop observing after triggering
+                                // Add animation class when visible
+                                const counters = document.querySelectorAll('.counter-number');
+                                counters.forEach(counter => {
+                                    counter.classList.add('counter-animated');
+                                });
+                                observer.disconnect();
                             }
                         });
                     }, options);
                     
                     observer.observe(counterSection);
-                }
-                
-                // Initialize when DOM is ready
-                if (document.readyState === 'loading') {
-                    document.addEventListener('DOMContentLoaded', setupObserver);
-                } else {
-                    setupObserver();
-                }
+                });
             })();
         </script>
+        <style>
+            /* Simple CSS animation for counter numbers - no JS animation needed */
+            .counter-number {
+                opacity: 0.3;
+                transform: scale(0.8);
+                transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            }
+            .counter-animated {
+                opacity: 1;
+                transform: scale(1);
+            }
+        </style>
     </section>
 
     <!-- Areas of Operation -->
@@ -986,113 +817,65 @@
 
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
-    <!-- AOS Animation Library JS - only load on desktop for performance -->
-    <script>
-      if (window.innerWidth > 767) {
-        const aosScript = document.createElement('script');
-        aosScript.src = 'https://unpkg.com/aos@2.3.1/dist/aos.js';
-        aosScript.defer = true;
-        document.head.appendChild(aosScript);
-      }
-    </script>
-    <!-- Custom JS - use minified version -->
-    <script src="js/script.min.js" defer></script>
-    <script src="js/stats-counter.js" defer></script>
-    <script src="js/form-handler.js" defer></script>
-    <script src="js/icon-fix.js" defer></script>
-    <script src="js/social-icon-fix.js" defer></script>
-    <script src="js/offline-handler.js" defer></script>
-    <script src="js/performance-monitor.js" defer></script>
     
-    <!-- Mobile optimizations -->
+    <!-- Custom JS - cPanel optimized -->
+    <script src="js/script.min.js" defer></script>
+    <script src="js/form-handler.js" defer></script>
+    
+    <!-- Simple Mobile Optimizations for cPanel -->
     <script>
-      // Mobile performance optimizations
-      const checkDeviceAndOptimize = () => {
+      // Simple and compatible mobile optimizations
+      document.addEventListener('DOMContentLoaded', function() {
+        // Basic device detection
         const isMobile = window.innerWidth <= 767;
         
-        // Check for low-end devices/slow connections
-        if (navigator.connection) {
-          const connection = navigator.connection;
-          if (connection.saveData || 
-              connection.effectiveType === 'slow-2g' || 
-              connection.effectiveType === '2g') {
-            document.documentElement.classList.add('slow-connection');
-            // Disable non-critical animations
-            const style = document.createElement('style');
-            style.textContent = '.slow-connection * { animation: none !important; transition: none !important; }';
-            document.head.appendChild(style);
-          }
-        }
-        
-        // Check for low memory/CPU devices
-        if (navigator.deviceMemory && navigator.deviceMemory < 4) {
-          document.documentElement.classList.add('low-end-device');
-        }
-
-        // Mobile-specific optimizations
+        // Add mobile class for CSS optimizations
         if (isMobile) {
           document.documentElement.classList.add('mobile-device');
           
-          // Add passive event listeners for better scroll performance
-          let ticking = false;
-          const updateOnScroll = () => {
-            if (!ticking) {
-              requestAnimationFrame(() => {
-                // Mobile scroll optimizations can go here
-                ticking = false;
-              });
-              ticking = true;
-            }
-          };
-          
-          document.addEventListener('scroll', updateOnScroll, { passive: true });
-          document.addEventListener('touchstart', () => {}, { passive: true });
-          document.addEventListener('touchmove', () => {}, { passive: true });
-          
-          // Optimize image loading on mobile
-          const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-          if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries) => {
-              entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                  const img = entry.target;
-                  if (img.dataset.src) {
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                  }
-                  imageObserver.unobserve(img);
-                }
-              });
-            }, { threshold: 0.1, rootMargin: '50px' });
-            
-            lazyImages.forEach(img => imageObserver.observe(img));
-          }
-        }
-      };
-      
-      // Run optimizations
-      checkDeviceAndOptimize();
-
-      // Smooth scroll optimization
-      document.addEventListener('DOMContentLoaded', function() {
-        const homeLink = document.querySelector('a.nav-link[href="#hero"]');
-        if (homeLink) {
-          homeLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            const hero = document.getElementById('hero');
-            if (hero) {
-              hero.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-          });
-        }
-
-        // Mobile form optimizations
-        if (window.innerWidth <= 767) {
-          // Prevent zoom on input focus for iOS
+          // Simple form optimizations for mobile
           const inputs = document.querySelectorAll('input, select, textarea');
           inputs.forEach(input => {
-            input.style.fontSize = '16px';
+            input.style.fontSize = '16px'; // Prevent zoom on iOS
           });
+        }
+        
+        // Simple smooth scroll for all browsers
+        const allLinks = document.querySelectorAll('a[href^="#"]');
+        allLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href !== '#') {
+              e.preventDefault();
+              const target = document.querySelector(href);
+              if (target) {
+                window.scrollTo({
+                  top: target.offsetTop - 80,
+                  behavior: 'smooth'
+                });
+              }
+            }
+          });
+        });
+        
+        // Simple image lazy loading
+        if ('IntersectionObserver' in window) {
+          const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+          const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const img = entry.target;
+                const src = img.getAttribute('data-src');
+                if (src) {
+                  img.src = src;
+                  img.removeAttribute('data-src');
+                }
+                imageObserver.unobserve(img);
+              }
+            });
+          });
+          
+          lazyImages.forEach(img => imageObserver.observe(img));
         }
       });
     </script>
