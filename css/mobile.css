@@ -1,5 +1,60 @@
 /* Mobile-specific optimizations for Ubora Services website */
 
+/* Critical mobile performance optimizations */
+@media (max-width: 767.98px) {
+  /* Optimize rendering performance */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeSpeed;
+  }
+
+  /* Reduce layout shifts and improve loading */
+  body {
+    font-display: swap;
+    contain: layout style;
+  }
+
+  /* Optimize images for mobile */
+  img {
+    content-visibility: auto;
+    contain-intrinsic-size: 300px 200px;
+    loading: lazy;
+    decoding: async;
+  }
+
+  /* Hero image optimization */
+  .hero-image img {
+    content-visibility: auto;
+    contain-intrinsic-size: 400px 300px;
+    loading: eager;
+    fetchpriority: high;
+  }
+
+  /* Disable expensive animations on mobile */
+  .service-card,
+  .why-us-card,
+  .counter-item,
+  .client-logo,
+  .contact-info,
+  .contact-form,
+  .quote-card {
+    will-change: auto !important;
+    transform: none !important;
+    transition: opacity 0.2s ease !important;
+    animation: none !important;
+    backface-visibility: hidden !important;
+    perspective: 1000px !important;
+  }
+
+  /* Optimize sections for mobile viewport */
+  section {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 400px;
+    contain: layout style;
+  }
+}
+
 /* Reduce content width for small screens */
 @media (max-width: 767.98px) {
   /* Reduce text sizes for better mobile performance */

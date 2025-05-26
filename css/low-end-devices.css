@@ -121,3 +121,77 @@
       contain: layout style paint;
   }
 }
+
+/* Low-end device mobile optimizations */
+.low-end-device.mobile-device {
+  /* Force hardware acceleration off for low-end devices */
+  * {
+    -webkit-transform: none !important;
+    transform: none !important;
+    will-change: auto !important;
+    -webkit-perspective: none !important;
+    perspective: none !important;
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+  }
+  
+  /* Simplify images */
+  img {
+    image-rendering: optimizeSpeed !important;
+    -webkit-optimize-contrast: optimizeSpeed !important;
+  }
+  
+  /* Disable complex CSS features */
+  .service-card,
+  .why-us-card,
+  .quote-card {
+    background: white !important;
+    border: 1px solid #ddd !important;
+    box-shadow: none !important;
+    border-radius: 4px !important;
+  }
+  
+  /* Simplify navbar */
+  .navbar {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+    background: white !important;
+  }
+  
+  /* Remove gradients */
+  #hero {
+    background: #1B512D !important;
+  }
+  
+  /* Simplify forms */
+  .form-control,
+  .form-select,
+  .btn {
+    border-radius: 4px !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Slow connection optimizations */
+.slow-connection {
+  /* Remove all non-essential visual effects */
+  .fade-in,
+  .slide-in,
+  .zoom-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
+  /* Disable AOS animations */
+  [data-aos] {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  
+  /* Force immediate loading of critical content */
+  .hero-image,
+  .service-card,
+  .contact-info {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}

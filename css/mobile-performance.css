@@ -1,0 +1,161 @@
+/* Mobile Performance Optimizations - Load this first on mobile */
+
+/* Critical mobile performance improvements */
+@media (max-width: 767.98px) {
+  /* Optimize rendering */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeSpeed;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  /* Reduce layout shifts */
+  body {
+    font-display: swap;
+    contain: layout style;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  /* Optimize images for mobile performance */
+  img {
+    content-visibility: auto;
+    contain-intrinsic-size: 300px 200px;
+    image-rendering: optimizeSpeed;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  /* Hero image specific optimization */
+  .hero-image img {
+    content-visibility: visible;
+    contain-intrinsic-size: 400px 300px;
+    image-rendering: optimizeQuality;
+  }
+
+  /* Disable expensive animations and effects on mobile */
+  .service-card,
+  .why-us-card,
+  .counter-item,
+  .client-logo,
+  .contact-info,
+  .contact-form,
+  .quote-card,
+  .hero-image {
+    will-change: auto !important;
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
+    transition: opacity 0.2s ease !important;
+    animation: none !important;
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
+  }
+
+  /* Remove hover effects on mobile */
+  .service-card:hover,
+  .why-us-item:hover,
+  .client-logo:hover,
+  .hero-image:hover {
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
+  }
+
+  /* Optimize sections for mobile viewport */
+  section {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 400px;
+    contain: layout style;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  /* Optimize navbar performance */
+  .navbar {
+    will-change: auto;
+    transition: none !important;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  /* Optimize form performance */
+  input,
+  select,
+  textarea,
+  button {
+    -webkit-appearance: none;
+    appearance: none;
+    will-change: auto;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  /* Optimize social icons */
+  .social-icon,
+  .whatsapp-float {
+    will-change: auto;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  /* Remove complex animations */
+  .fade-in {
+    animation: none !important;
+    opacity: 1 !important;
+    -webkit-transform: none !important;
+    transform: none !important;
+  }
+
+  /* Optimize county badges */
+  .county-badge {
+    will-change: auto;
+    transition: none !important;
+  }
+}
+
+/* Performance optimizations for very low-end devices */
+@media (max-width: 767.98px) and (max-device-width: 480px) {
+  /* Further reduce visual complexity */
+  .service-card,
+  .why-us-card,
+  .quote-card {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Simplify gradients */
+  #hero {
+    background: #1B512D !important;
+  }
+
+  /* Reduce border radius for better performance */
+  .service-card,
+  .why-us-card,
+  .quote-card,
+  .contact-form {
+    border-radius: 8px !important;
+  }
+}
+
+/* Disable all animations on very slow devices */
+@media (max-width: 767.98px) and (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* GPU acceleration for critical elements */
+@media (max-width: 767.98px) {
+  .navbar,
+  .whatsapp-float,
+  .hero-image {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+  }
+}

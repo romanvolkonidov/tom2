@@ -1,5 +1,27 @@
 {
   "dependencies": {
     "nodemailer": "^7.0.3"
-  }
+  },
+  "name": "tom3",
+  "version": "1.0.0",
+  "main": "sw.js",
+  "devDependencies": {
+    "csso-cli": "^4.0.2",
+    "uglify-js": "^3.19.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romanvolkonidov/tom3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/romanvolkonidov/tom3/issues"
+  },
+  "homepage": "https://github.com/romanvolkonidov/tom3#readme",
+  "description": ""
 }

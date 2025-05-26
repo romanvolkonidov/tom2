@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://uboraservices.co.ke/sitemap.xml
+
+# Priority crawling for main page
+Crawl-delay: 1
